@@ -1,16 +1,46 @@
 {
-  "name": "editor",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+	"name": "fungo-editor",
+	"version": "0.1.0",
+	"description": "一个基于slate.js的所见即所得的富文本编辑器",
+	"author": "TB",
+	"license": "MIT",
+	"keywords": ["rich-editor", "slate"],
+	"repository": "https://github.com/Durianicecream/Fungo-editor",
+	"scripts": {
+		"start":
+			"webpack-dev-server --mode development --history-api-fallback --inline --progress --colors",
+		"build":
+			"webpack --mode production --config webpack.config.prod.js --progress --colors"
+	},
+	"dependencies": {
+		"immutable": "^3.8.2",
+		"react": "^16.3.2",
+		"react-dom": "^16.3.2",
+		"slate": "0.33.4",
+		"slate-react": "0.12.4"
+	},
+	"devDependencies": {
+		"autoprefixer": "^8.3.0",
+		"babel-core": "^6.26.2",
+		"babel-loader": "^7.1.4",
+		"babel-polyfill": "^6.26.0",
+		"babel-preset-env": "^1.6.1",
+		"babel-preset-react": "^6.24.1",
+		"babel-preset-stage-0": "^6.24.1",
+		"babel-runtime": "6.26.0",
+		"clean-webpack-plugin": "^0.1.19",
+		"css-loader": "^0.28.11",
+		"extract-text-webpack-plugin": "^4.0.0-beta.0",
+		"file-loader": "^1.1.11",
+		"html-webpack-plugin": "^3.0.0",
+		"less": "^3.0.2",
+		"less-loader": "^4.1.0",
+		"postcss-loader": "^2.1.4",
+		"prettier": "^1.12.1",
+		"style-loader": "^0.19.1",
+		"url-loader": "^0.6.2",
+		"webpack": "^4.6.0",
+		"webpack-cli": "^2.0.15",
+		"webpack-dev-server": "^3.0.0"
+	}
 }
