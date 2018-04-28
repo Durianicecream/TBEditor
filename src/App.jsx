@@ -4,7 +4,7 @@ import { Value } from 'slate'
 import './App.less'
 import './public/icons/font-awesome.css'
 import Toolbar from './components/ToolBar'
-import plugins from './plugins'
+import { commonPlugin } from './plugins'
 
 export default class FungoEditor extends React.Component {
 	constructor() {
@@ -119,6 +119,7 @@ export default class FungoEditor extends React.Component {
 				}
 			})
 		}
+		this.plugins = [commonPlugin()]
 	}
 
 	onChange = ({ value }) => {
@@ -130,7 +131,7 @@ export default class FungoEditor extends React.Component {
 			<div className="fungo-editor">
 				<Toolbar />
 				<Editor
-					plugins={plugins}
+					plugins={this.plugins}
 					className="fungo-contenteditable"
 					value={this.state.value}
 					onChange={this.onChange}

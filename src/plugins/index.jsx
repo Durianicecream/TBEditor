@@ -1,3 +1,3 @@
 import commonPlugin from './common'
 
-export default [commonPlugin]
+export { commonPlugin, Bold }
