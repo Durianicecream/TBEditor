@@ -1,5 +1,11 @@
 import React from 'react'
 import './index.less'
+import Icon from '../Icon'
+import { Bold, Italic, StrikeThrough } from '../../plugins'
+
+const ItalicButton = Italic().components.ControlButton
+const BoldButton = Bold().components.ControlButton
+const StrikeThroughButton = StrikeThrough().components.ControlButton
 
 export default class Toolbar extends React.Component {
 	constructor() {
@@ -8,11 +14,12 @@ export default class Toolbar extends React.Component {
 	}
 
 	render() {
+		const { value, onChange } = this.props
 		return (
 			<div className="fungo-editor-toolbar">
-				<i className="fa fa-bold" title="加粗 ctrl+b" />
-				<i className="fa fa-italic" title="斜体 ctrl+i" />
-				<i className="fa fa-strikethrough" title="删除线 ctrl+s" />
+				<BoldButton value={value} onChange={onChange} />
+				<ItalicButton value={value} onChange={onChange} />
+				<StrikeThroughButton value={value} onChange={onChange} />
 
 				<i className="fa fa-chain" title="链接" />
 

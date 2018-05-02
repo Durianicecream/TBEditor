@@ -1,3 +1,5 @@
-import commonPlugin from './common'
+import Bold from './Bold'
+import StrikeThrough from './StrikeThrough'
+import Italic from './Italic'
 
-export { commonPlugin, Bold }
+export { Bold, StrikeThrough, Italic }

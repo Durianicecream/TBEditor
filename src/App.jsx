@@ -1,125 +1,18 @@
 import React from 'react'
-import { Editor } from 'slate-react'
+import { Editor, Plain } from 'slate-react'
 import { Value } from 'slate'
+import Html from 'slate-html-serializer'
 import './App.less'
-import './public/icons/font-awesome.css'
 import Toolbar from './components/ToolBar'
-import { commonPlugin } from './plugins'
+import { StrikeThrough, Bold, Italic } from './plugins'
 
 export default class FungoEditor extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			value: Value.fromJSON({
-				document: {
-					nodes: [
-						{
-							object: 'block',
-							type: 'paragraph',
-							nodes: [
-								{
-									object: 'text',
-									leaves: [
-										{
-											text: 'This is editable '
-										},
-										{
-											text: 'rich',
-											marks: [
-												{
-													type: 'bold'
-												}
-											]
-										},
-										{
-											text: ' text, '
-										},
-										{
-											text: 'much',
-											marks: [
-												{
-													type: 'italic'
-												}
-											]
-										},
-										{
-											text: ' better than a '
-										},
-										{
-											text: '<textarea>',
-											marks: [
-												{
-													type: 'code'
-												}
-											]
-										},
-										{
-											text: '!'
-										}
-									]
-								}
-							]
-						},
-						{
-							object: 'block',
-							type: 'paragraph',
-							nodes: [
-								{
-									object: 'text',
-									leaves: [
-										{
-											text:
-												"Since it's rich text, you can do things like turn a selection of text "
-										},
-										{
-											text: 'bold',
-											marks: [
-												{
-													type: 'bold'
-												}
-											]
-										},
-										{
-											text:
-												', or add a semantically rendered block quote in the middle of the page, like this:'
-										}
-									]
-								}
-							]
-						},
-						{
-							object: 'block',
-							type: 'block-quote',
-							nodes: [
-								{
-									object: 'text',
-									leaves: [
-										{
-											text: 'A wise quote.'
-										}
-									]
-								}
-							]
-						},
-						{
-							object: 'block',
-							type: 'paragraph',
-							nodes: [
-								{
-									object: 'text',
-									leaves: [
-										{
-											text: 'Try it out for yourself!'
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			})
+			value: new Html().deserialize('<div>我司谁</div>')
 		}
-		this.plugins = [commonPlugin()]
+		this.plugins = [StrikeThrough().plugins, Bold().plugins, Italic().plugins]
 	}
 
 	onChange = ({ value }) => {
@@ -129,7 +22,7 @@ export default class FungoEditor extends React.Component {
 	render() {
 		return (
 			<div className="fungo-editor">
-				<Toolbar />
+				<Toolbar onChange={this.onChange} value={this.state.value} />
 				<Editor
 					plugins={this.plugins}
 					className="fungo-contenteditable"

@@ -4,19 +4,21 @@
 	"description": "一个基于slate.js的所见即所得的富文本编辑器",
 	"author": "TB",
 	"license": "MIT",
-	"keywords": ["rich-editor", "slate"],
+	"keywords": [
+		"rich-editor",
+		"slate"
+	],
 	"repository": "https://github.com/Durianicecream/Fungo-editor",
 	"scripts": {
-		"start":
-			"webpack-dev-server --mode development --history-api-fallback --hot --inline --progress --colors",
-		"build":
-			"webpack --mode production --config webpack.config.prod.js --progress --colors"
+		"start": "webpack-dev-server --mode development --history-api-fallback --hot --inline --progress --colors",
+		"build": "webpack --mode production --config webpack.config.prod.js --progress --colors"
 	},
 	"dependencies": {
 		"immutable": "^3.8.2",
 		"react": "^16.3.2",
 		"react-dom": "^16.3.2",
 		"slate": "0.33.4",
+		"slate-html-serializer": "^0.6.2",
 		"slate-react": "0.12.4"
 	},
 	"devDependencies": {
