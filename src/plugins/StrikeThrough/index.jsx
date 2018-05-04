@@ -35,7 +35,7 @@ export default (options) => {
 			renderMark: (props) => {
 				const { children, mark, attributes } = props
 				if (mark.type === 'strike') {
-					return <s {...{ attributes }}>{children}</s>
+					return <s {...attributes}>{children}</s>
 				}
 			},
 			onKeyDown: (event, change) => {

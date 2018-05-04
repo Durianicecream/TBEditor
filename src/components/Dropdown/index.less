@@ -1,0 +1,42 @@
+.dropdown {
+	position: relative;
+	height: 0;
+	ul {
+		visibility: hidden;
+		opacity: 0;
+		margin: 0;
+		padding: 6px;
+		z-index: 1050;
+		transform: translate(-50%);
+		transition: all 0.4s;
+		position: absolute;
+		top: 0;
+		left: 0;
+		max-width: 210px;
+		border-radius: 6px;
+		background: rgba(0, 0, 0, 0.85);
+		&.active {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(-50%, 30px);
+		}
+		li.inline {
+			display: inline;
+			margin: 6px;
+			line-height: 2;
+		}
+		li.block {
+			display: block;
+			padding: 6px 12px;
+			cursor: pointer;
+		}
+		i {
+			font-style: normal;
+			cursor: pointer;
+			&:hover {
+				background: #07a9fe;
+				border-radius: 4px;
+			}
+		}
+	}
+}

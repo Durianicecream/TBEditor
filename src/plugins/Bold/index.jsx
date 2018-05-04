@@ -35,7 +35,7 @@ export default (options) => {
 			renderMark: (props) => {
 				const { children, mark, attributes } = props
 				if (mark.type === 'bold') {
-					return <b {...{ attributes }}>{children}</b>
+					return <b {...attributes}>{children}</b>
 				}
 			},
 			onKeyDown: (event, change) => {

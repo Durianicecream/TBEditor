@@ -1,3 +1,4 @@
+@import '.././node_modules/antd/dist/antd.css';
 .fungo-editor {
 	margin: 0 auto;
 	width: 1000px;
@@ -9,4 +10,17 @@
 .fungo-contenteditable {
 	padding: 20px;
 	min-height: 300px;
+	blockquote {
+		border-left: 2px solid #ddd;
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 10px;
+		color: #aaa;
+	}
+	.selected {
+		&.hr,
+		&.emoji {
+			outline: solid 2px rgb(61, 112, 212);
+		}
+	}
 }

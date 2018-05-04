@@ -37,7 +37,7 @@ export default (options) => {
 			renderMark: (props) => {
 				const { children, mark, attributes } = props
 				if (mark.type === 'italic') {
-					return <i {...{ attributes }}>{children}</i>
+					return <i {...attributes}>{children}</i>
 				}
 			},
 			onKeyDown: (event, change) => {
