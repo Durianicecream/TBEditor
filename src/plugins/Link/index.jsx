@@ -28,7 +28,7 @@ class ControlButton extends React.Component {
 			url: ''
 		}
 	}
-	showModal = () => {
+	showModal = (event) => {
 		const { value, onChange } = this.props
 		const change = value.change()
 		const href = this.state.href
@@ -38,7 +38,8 @@ class ControlButton extends React.Component {
 			this.setState({ modalVisible: true })
 		}
 	}
-	hideModal = () => {
+	hideModal = (event) => {
+		event.stopPropagation()
 		this.setState({ modalVisible: false })
 	}
 	handleKeyUp = (e) => {
@@ -46,12 +47,12 @@ class ControlButton extends React.Component {
 		this.setState({ url: value })
 	}
 	handleLink = (event) => {
+		event.stopPropagation()
 		const { value, onChange } = this.props
 		const change = value.change()
 		const url = this.state.url
-
-		onChange(addMark(change, url))
 		this.setState({ modalVisible: false })
+		onChange(addMark(change, url))
 	}
 	render() {
 		return (
@@ -85,12 +86,14 @@ export default (options) => {
 		plugins: {
 			renderNode: (props) => {
 				const { attributes, children, node } = props
-				const href = node.get('href')
-				return (
-					<a {...attributes} href={href}>
-						{children}
-					</a>
-				)
+				const href = node.data.get('href')
+				if (node.type === 'link') {
+					return (
+						<a {...attributes} href={href}>
+							{children}
+						</a>
+					)
+				}
 			}
 		}
 	}

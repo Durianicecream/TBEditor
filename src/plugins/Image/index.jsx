@@ -1,50 +1,109 @@
 import React from 'react'
-import { Modal } from 'antd'
+import { Modal, Upload } from 'antd'
 import Icon from './../../components/Icon'
+import './index.less'
 
-const addMark = (change, href) => {
-	return change.wrapInline({
-		type: 'link',
-		data: { href }
+const addBlock = (change, src) => {
+	return change.insertBlock({
+		type: 'image',
+		isVoid: true,
+		data: { src }
 	})
-	change.collapseToEnd()
 }
 
-const removeMark = (change) => {
-	return change.unwrapInline('link')
+const addBlocks = (change, imageList) => {
+	imageList.forEach((item) => {
+		change.insertBlock({
+			type: 'image',
+			isVoid: true,
+			data: { src: item.response.data.url }
+		})
+	})
+	return change
 }
 
-const hasMark = (value) => {
-	return value.inlines.some((inline) => inline.type == 'link')
-}
+class ControlButton extends React.Component {
+	constructor() {
+		super()
+		this.state = {
+			modalVisible: false,
+			fileList: []
+		}
+	}
 
-const ControlButton = ({ value, onChange }) => (
-	<span className={`${hasMark(value) ? 'active' : ''}`}>
-		<Icon name="image" />
-	</span>
-)
+	hideModal = (event) => {
+		event.stopPropagation()
+
+		this.setState({ modalVisible: false })
+	}
+
+	showModal = (event) => {
+		this.setState({ modalVisible: true })
+	}
+
+	handleAddImage = (event) => {
+		event.stopPropagation()
+
+		const { value, onChange } = this.props
+		const { fileList } = this.state
+		onChange(addBlocks(value.change(), fileList))
+		this.setState({ modalVisible: false, fileList: [] })
+	}
+
+	handleChange = ({ fileList }) => this.setState({ fileList })
+
+	handlePreview = (file) => {
+		window.open(file.response.data.url)
+	}
+	render() {
+		return (
+			<span onClick={this.showModal}>
+				<Icon name="image" />
+				<Modal
+					onCancel={this.hideModal}
+					onOk={this.handleAddImage}
+					visible={this.state.modalVisible}
+					title="添加图片"
+				>
+					<Upload
+						action="/api/upload/image"
+						name="image"
+						listType="picture-card"
+						fileList={this.state.fileList}
+						onPreview={this.handlePreview}
+						onChange={this.handleChange}
+					>
+						<div>
+							<Icon name="plus" />
+						</div>
+					</Upload>
+				</Modal>
+			</span>
+		)
+	}
+}
 
 export default (options) => {
 	return {
 		changes: {
-			addMark,
-			removeMark
+			addBlock
 		},
 		components: {
 			ControlButton
 		},
-		helpers: {
-			hasMark
-		},
 		plugins: {
 			renderNode: (props) => {
-				const { attributes, children, node } = props
-				const href = node.get('href')
-				return (
-					<a {...attributes} href={href}>
-						{children}
-					</a>
-				)
+				const { attributes, node, isSelected } = props
+				const src = node.data.get('src')
+				if (node.type === 'image') {
+					return (
+						<img
+							{...attributes}
+							className={`image ${isSelected ? 'selected' : ''}`}
+							src={src}
+						/>
+					)
+				}
 			}
 		}
 	}

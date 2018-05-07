@@ -12,14 +12,22 @@ const hasBlock = (value, level) => {
 	return value.blocks.some((node) => node.type === `h${level}`)
 }
 
-const ControlButton = ({ value, onChange, level }) => (
-	<span
-		className={`${hasBlock(value, level) ? 'active' : ''}`}
-		onClick={(e) => onChange(toggleBlock(value, level))}
-	>
-		<i className="fa">H{level}</i>
-	</span>
-)
+const ControlButton = ({ value, onChange }) => {
+	const levelList = [1, 2, 3]
+	return (
+		<span>
+			{levelList.map((level) => (
+				<span
+					className={`${hasBlock(value, level) ? 'active' : ''}`}
+					onClick={(e) => onChange(toggleBlock(value, level))}
+					key={level}
+				>
+					<i className="fa">H{level}</i>
+				</span>
+			))}
+		</span>
+	)
+}
 
 export default (options) => {
 	return {

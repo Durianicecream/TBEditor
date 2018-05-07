@@ -58,7 +58,14 @@ class ControlButton extends React.Component {
 				<Icon name="smile-o" />
 				<DropDown
 					data={EMOJIS.map((item, index) => (
-						<i onClick={(e) => onChange(addInline(value, index))}>{item}</i>
+						<i
+							onClick={(e) => {
+								event.stopPropagation()
+								onChange(addInline(value, index))
+							}}
+						>
+							{item}
+						</i>
 					))}
 					type="inline"
 					visible={this.state.dropdownVisible}

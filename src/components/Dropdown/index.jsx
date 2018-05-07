@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.less'
 
-export default function({ type, data, visible = false }) {
+export default function Dropdown({ type, data, visible = false }) {
 	return (
 		<span className="dropdown">
 			<ul className={visible ? 'active' : ''}>

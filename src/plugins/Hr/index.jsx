@@ -3,13 +3,11 @@ import Icon from './../../components/Icon'
 
 const addBlock = (value) => {
 	const change = value.change()
-	return change
-		.insertBlock({
-			type: 'hr',
-			isVoid: true
-		})
-		.insertBlock('paragraph')
-		.focus(0)
+	const node = value.focusBlock
+	return change.collapseToEndOf(node).insertBlock({
+		type: 'hr',
+		isVoid: true
+	})
 }
 
 const ControlButton = ({ value, onChange }) => (

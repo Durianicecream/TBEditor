@@ -23,6 +23,12 @@ module.exports = Object.assign(baseConfig, {
 		stats: {
 			chunks: false
 		},
-		hot: true
+		hot: true,
+		proxy: {
+			'/api/*': {
+				target: 'http://tuobing.leanapp.cn',
+				changeOrigin: true
+			}
+		}
 	}
 })

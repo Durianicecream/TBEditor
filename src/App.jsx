@@ -14,7 +14,9 @@ import {
 	Emoji,
 	Paragraph,
 	Link,
-	Image
+	Image,
+	Hisrory,
+	Common
 } from './plugins'
 
 export default class FungoEditor extends React.Component {
@@ -33,7 +35,8 @@ export default class FungoEditor extends React.Component {
 			Emoji().plugins,
 			Paragraph().plugins,
 			Link().plugins,
-			Image().plugins
+			Image().plugins,
+			Common().plugins
 		]
 	}
 
@@ -50,6 +53,7 @@ export default class FungoEditor extends React.Component {
 					className="fungo-contenteditable"
 					value={this.state.value}
 					onChange={this.onChange}
+					schema={this.schema}
 				/>
 			</div>
 		)
