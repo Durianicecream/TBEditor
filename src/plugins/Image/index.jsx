@@ -56,6 +56,7 @@ class ControlButton extends React.Component {
 		window.open(file.response.data.url)
 	}
 	render() {
+		const { uploadProps } = this.props
 		return (
 			<span onClick={this.showModal}>
 				<Icon name="image" />
@@ -66,12 +67,12 @@ class ControlButton extends React.Component {
 					title="添加图片"
 				>
 					<Upload
-						action="/api/upload/image"
-						name="image"
+						{...uploadProps}
 						listType="picture-card"
 						fileList={this.state.fileList}
 						onPreview={this.handlePreview}
 						onChange={this.handleChange}
+						multiple
 					>
 						<div>
 							<Icon name="plus" />

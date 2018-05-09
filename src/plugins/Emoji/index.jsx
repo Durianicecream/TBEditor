@@ -2,14 +2,10 @@ import React from 'react'
 import Icon from './../../components/Icon'
 import DropDown from './../../components/Dropdown'
 
-const addInline = (value, code) => {
+const addText = (value, emoji) => {
 	const change = value.change()
 	return change
-		.insertInline({
-			type: 'emoji',
-			isVoid: true,
-			data: { code }
-		})
+		.insertText(emoji)
 		.collapseToStartOfNextText()
 		.focus()
 }
@@ -57,11 +53,11 @@ class ControlButton extends React.Component {
 			<span onClick={this.showDropDown}>
 				<Icon name="smile-o" />
 				<DropDown
-					data={EMOJIS.map((item, index) => (
+					data={EMOJIS.map((item) => (
 						<i
 							onClick={(e) => {
 								event.stopPropagation()
-								onChange(addInline(value, index))
+								onChange(addText(value, item))
 							}}
 						>
 							{item}
@@ -78,27 +74,10 @@ class ControlButton extends React.Component {
 export default (options) => {
 	return {
 		changes: {
-			addInline
+			addText
 		},
 		components: {
 			ControlButton
-		},
-		plugins: {
-			renderNode: (props) => {
-				const { children, node, attributes, isSelected } = props
-				if (node.type === 'emoji') {
-					const { data } = node
-					const code = data.get('code')
-					return (
-						<span
-							className={`emoji ${isSelected ? 'selected' : ''}`}
-							{...attributes}
-						>
-							{EMOJIS[code]}
-						</span>
-					)
-				}
-			}
 		}
 	}
 }

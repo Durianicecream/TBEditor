@@ -8,7 +8,17 @@ module.exports = {
 				test: /\.(less|css)$/,
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
-					use: ['css-loader', 'less-loader']
+					use: [
+						{
+							loader: 'css-loader'
+						},
+						{
+							loader: 'less-loader',
+							options: {
+								javascriptEnabled: true
+							}
+						}
+					]
 				})
 			},
 			{
@@ -17,7 +27,16 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['react', 'env', 'stage-0']
+						presets: ['react', 'env', 'stage-0'],
+						plugins: [
+							[
+								'import',
+								{
+									libraryName: 'antd',
+									style: true
+								}
+							]
+						]
 					}
 				}
 			},
@@ -50,7 +69,8 @@ module.exports = {
 	resolve: {
 		modules: [
 			path.join(__dirname, './src'),
-			path.join(__dirname, './node_modules')
+			path.join(__dirname, './node_modules'),
+			path.join(__dirname, './example')
 		],
 		extensions: ['.js', '.jsx']
 	}

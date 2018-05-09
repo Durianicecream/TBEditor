@@ -4,14 +4,13 @@
 	"description": "一个基于slate.js的所见即所得的富文本编辑器",
 	"author": "TB",
 	"license": "MIT",
-	"keywords": [
-		"rich-editor",
-		"slate"
-	],
+	"keywords": ["rich-editor", "slate"],
 	"repository": "https://github.com/Durianicecream/Fungo-editor",
 	"scripts": {
-		"start": "webpack-dev-server --mode development --history-api-fallback --hot --inline --progress --colors",
-		"build": "webpack --mode production --config webpack.config.prod.js --progress --colors"
+		"start":
+			"webpack-dev-server --mode development --history-api-fallback --hot --inline --progress --colors",
+		"build":
+			"rm -rf dist/ && webpack --mode production --config webpack.config.prod.js --progress --colors"
 	},
 	"dependencies": {
 		"antd": "^3.4.5",
@@ -26,12 +25,12 @@
 		"autoprefixer": "^8.4.1",
 		"babel-core": "^6.26.3",
 		"babel-loader": "^7.1.4",
+		"babel-plugin-import": "^1.7.0",
 		"babel-polyfill": "^6.26.0",
 		"babel-preset-env": "^1.6.1",
 		"babel-preset-react": "^6.24.1",
 		"babel-preset-stage-0": "^6.24.1",
 		"babel-runtime": "6.26.0",
-		"clean-webpack-plugin": "^0.1.19",
 		"css-loader": "^0.28.11",
 		"extract-text-webpack-plugin": "^4.0.0-beta.0",
 		"file-loader": "^1.1.11",
@@ -43,6 +42,7 @@
 		"style-loader": "^0.19.1",
 		"url-loader": "^0.6.2",
 		"webpack": "^4.6.0",
+		"webpack-bundle-analyzer": "^2.11.1",
 		"webpack-cli": "^2.1.2",
 		"webpack-dev-server": "^3.1.4"
 	}

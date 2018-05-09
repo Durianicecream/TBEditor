@@ -3,7 +3,6 @@ import { Modal, Input } from 'antd'
 import Icon from './../../components/Icon'
 
 const addMark = (change, href) => {
-	console.log(href)
 	return change
 		.wrapInline({
 			type: 'link',

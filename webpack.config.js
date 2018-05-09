@@ -6,7 +6,7 @@ const baseConfig = require('./webpack.config.base')
 
 module.exports = Object.assign(baseConfig, {
 	entry: {
-		index: './src/index.jsx'
+		index: './example/index.jsx'
 	},
 	output: {
 		path: path.join(__dirname, './dist'),
@@ -15,7 +15,7 @@ module.exports = Object.assign(baseConfig, {
 	plugins: [
 		new ExtractTextPlugin('editor.css'),
 		new HtmlWebpackPlugin({
-			template: './src/index.html'
+			template: './example/index.html'
 		})
 	],
 	devServer: {
