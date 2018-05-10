@@ -1,25 +1,33 @@
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
 	module: {
-		rules: [
-			{
+		rules: [{
 				test: /\.(less|css)$/,
-				use: ExtractTextPlugin.extract({
-					fallback: 'style-loader',
-					use: [
-						{
-							loader: 'css-loader'
-						},
-						{
-							loader: 'less-loader',
-							options: {
-								javascriptEnabled: true
-							}
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader'
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							ident: 'postcss',
+							plugins: [
+								require('autoprefixer')({
+									broswer: 'last 5 versions'
+								}),
+							]
 						}
-					]
-				})
+					},
+					{
+						loader: 'less-loader',
+						options: {
+							javascriptEnabled: true
+						}
+					}
+				]
 			},
 			{
 				test: /\.(js|jsx)$/,
@@ -42,27 +50,23 @@ module.exports = {
 			},
 			{
 				test: /\.(png|svg)$/,
-				use: [
-					{
-						loader: 'url-loader',
-						options: {
-							limit: 8192,
-							name: '[name]_[hash:6].[ext]'
-						}
+				use: [{
+					loader: 'url-loader',
+					options: {
+						limit: 8192,
+						name: '[name]_[hash:6].[ext]'
 					}
-				]
+				}]
 			},
 			{
 				test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-				use: [
-					{
-						loader: 'url-loader',
-						options: {
-							limit: 12000,
-							name: '[name]_[hash:6].[ext]'
-						}
+				use: [{
+					loader: 'url-loader',
+					options: {
+						limit: 12000,
+						name: '[name]_[hash:6].[ext]'
 					}
-				]
+				}]
 			}
 		]
 	},

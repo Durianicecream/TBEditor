@@ -1,19 +1,15 @@
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const baseConfig = require('./webpack.config.base')
 
 module.exports = Object.assign(baseConfig, {
 	entry: {
 		index: './example/index.jsx'
 	},
-	output: {
-		path: path.join(__dirname, './dist'),
-		filename: '[name].js'
-	},
 	plugins: [
-		new ExtractTextPlugin('editor.css'),
+		new MiniCssExtractPlugin('editor.css'),
 		new HtmlWebpackPlugin({
 			template: './example/index.html'
 		})

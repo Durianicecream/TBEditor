@@ -1,10 +1,20 @@
 const webpack = require('webpack')
 const path = require('path')
 const baseConfig = require('./webpack.config.base')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 	.BundleAnalyzerPlugin
 
 module.exports = Object.assign(baseConfig, {
-	plugins: [new ExtractTextPlugin('editor.css'), new BundleAnalyzerPlugin()]
+	output: {
+		filename: 'editor.js',
+		library: 'FungoEditor',
+		libraryTarget: 'umd',
+		umdNamedDefine: true
+	},
+	externals: {
+		react: 'react',
+		antd: 'antd',
+	},
+	plugins: [new MiniCssExtractPlugin('editor.css'), new BundleAnalyzerPlugin()]
 })

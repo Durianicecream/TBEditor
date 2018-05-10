@@ -1,9 +1,15 @@
 {
 	"name": "fungo-editor",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "一个基于slate.js的所见即所得的富文本编辑器",
 	"author": "TB",
 	"license": "MIT",
+	"private": false,
+	"main": "dist/editor.js",
+	"files": [
+		"dist",
+		"src"
+	],
 	"keywords": [
 		"rich-editor",
 		"slate"
@@ -33,11 +39,11 @@
 		"babel-preset-stage-0": "^6.24.1",
 		"babel-runtime": "^6.26.0",
 		"css-loader": "^0.28.11",
-		"extract-text-webpack-plugin": "^4.0.0-beta.0",
 		"file-loader": "^1.1.11",
 		"html-webpack-plugin": "^3.0.0",
 		"less": "^3.0.4",
 		"less-loader": "^4.1.0",
+		"mini-css-extract-plugin": "^0.4.0",
 		"postcss-loader": "^2.1.5",
 		"prettier": "^1.12.1",
 		"style-loader": "^0.19.1",
