@@ -12,9 +12,5 @@ module.exports = Object.assign(baseConfig, {
 		libraryTarget: 'umd',
 		umdNamedDefine: true
 	},
-	externals: {
-		react: 'react',
-		antd: 'antd',
-	},
 	plugins: [new MiniCssExtractPlugin('editor.css'), new BundleAnalyzerPlugin()]
 })
