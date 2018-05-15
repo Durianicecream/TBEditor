@@ -3,7 +3,7 @@ node_modules
 package-lock.json
 
 # production
-dist
+/dist
 lib
 
 # editor
