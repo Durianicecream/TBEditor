@@ -1,7 +1,7 @@
 import React from 'react'
 import Icon from './../../components/Icon'
 
-const addBlock = (value) => {
+const addHr = (value) => {
 	const change = value.change()
 	const node = value.focusBlock
 	return change.collapseToEndOf(node).insertBlock({
@@ -11,15 +11,13 @@ const addBlock = (value) => {
 }
 
 const ControlButton = ({ value, onChange }) => (
-	<span onClick={(e) => onChange(addBlock(value))}>
-		<Icon name="minus" />
-	</span>
+	<Icon name="minus" onClick={(e) => onChange(addHr(value))} tip={'分割线'} />
 )
 
 export default (options) => {
 	return {
 		changes: {
-			addBlock
+			addHr
 		},
 		components: {
 			ControlButton

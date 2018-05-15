@@ -2,7 +2,7 @@ import React from 'react'
 import Icon from './../../components/Icon'
 import DropDown from './../../components/Dropdown'
 
-const addText = (value, emoji) => {
+const addEmoji = (value, emoji) => {
 	const change = value.change()
 	return change
 		.insertText(emoji)
@@ -50,14 +50,13 @@ class ControlButton extends React.Component {
 	render() {
 		const { onChange, value } = this.props
 		return (
-			<span onClick={this.showDropDown}>
-				<Icon name="smile-o" />
+			<span>
+				<Icon name="smile-o" onClick={this.showDropDown} tip="表情" />
 				<DropDown
 					data={EMOJIS.map((item) => (
 						<i
 							onClick={(e) => {
-								event.stopPropagation()
-								onChange(addText(value, item))
+								onChange(addEmoji(value, item))
 							}}
 						>
 							{item}
@@ -74,7 +73,7 @@ class ControlButton extends React.Component {
 export default (options) => {
 	return {
 		changes: {
-			addText
+			addEmoji
 		},
 		components: {
 			ControlButton

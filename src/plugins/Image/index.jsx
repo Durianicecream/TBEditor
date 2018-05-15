@@ -1,9 +1,8 @@
 import React from 'react'
 import { Modal, Upload } from 'antd'
 import Icon from './../../components/Icon'
-import './index.less'
 
-const addBlock = (change, src) => {
+const addImage = (change, src) => {
 	return change.insertBlock({
 		type: 'image',
 		isVoid: true,
@@ -11,7 +10,7 @@ const addBlock = (change, src) => {
 	})
 }
 
-const addBlocks = (change, imageList) => {
+const addImages = (change, imageList) => {
 	imageList.forEach((item) => {
 		change.insertBlock({
 			type: 'image',
@@ -27,13 +26,12 @@ class ControlButton extends React.Component {
 		super()
 		this.state = {
 			modalVisible: false,
-			fileList: []
+			fileList: [],
+			loading: false
 		}
 	}
 
 	hideModal = (event) => {
-		event.stopPropagation()
-
 		this.setState({ modalVisible: false })
 	}
 
@@ -42,11 +40,9 @@ class ControlButton extends React.Component {
 	}
 
 	handleAddImage = (event) => {
-		event.stopPropagation()
-
 		const { value, onChange } = this.props
 		const { fileList } = this.state
-		onChange(addBlocks(value.change(), fileList))
+		onChange(addImages(value.change(), fileList))
 		this.setState({ modalVisible: false, fileList: [] })
 	}
 
@@ -58,12 +54,13 @@ class ControlButton extends React.Component {
 	render() {
 		const { uploadProps } = this.props
 		return (
-			<span onClick={this.showModal}>
-				<Icon name="image" />
+			<span>
+				<Icon name="image" onClick={this.showModal} tip="图片" />
 				<Modal
 					onCancel={this.hideModal}
 					onOk={this.handleAddImage}
 					visible={this.state.modalVisible}
+					confirmLoading={this.state.loading}
 					title="添加图片"
 				>
 					<Upload
@@ -75,7 +72,7 @@ class ControlButton extends React.Component {
 						multiple
 					>
 						<div>
-							<Icon name="plus" />
+							<i className="fa fa-plus" />
 						</div>
 					</Upload>
 				</Modal>
@@ -87,7 +84,7 @@ class ControlButton extends React.Component {
 export default (options) => {
 	return {
 		changes: {
-			addBlock
+			addImage
 		},
 		components: {
 			ControlButton

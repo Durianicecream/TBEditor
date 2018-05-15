@@ -11,12 +11,16 @@ const redo = (change) => {
 
 const ControlButton = ({ value, onChange }) => (
 	<span>
-		<span onClick={(e) => onChange(undo(value.change()))}>
-			<Icon name="undo" />
-		</span>
-		<span onClick={(e) => onChange(redo(value.change()))}>
-			<Icon name="repeat" />
-		</span>
+		<Icon
+			name="undo"
+			onClick={(e) => onChange(undo(value.change()))}
+			tip="撤销"
+		/>
+		<Icon
+			name="repeat"
+			onClick={(e) => onChange(redo(value.change()))}
+			tip="重做"
+		/>
 	</span>
 )
 

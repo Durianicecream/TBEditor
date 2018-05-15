@@ -8,8 +8,6 @@
 	"main": "src/index",
 	"module": "src/index",
 	"files": [
-		"lib",
-		"dist",
 		"src"
 	],
 	"keywords": [
@@ -24,7 +22,7 @@
 		"start": "webpack-dev-server --mode development --history-api-fallback --hot --inline --progress --colors",
 		"dist": "rm -rf dist/ && webpack --mode production --config webpack.config.prod.js --progress --colors",
 		"lib": "rm -rf lib/ && mkdir lib && babel src --out-dir lib --copy-files && node scripts/less",
-		"build": "npm run lib && npm run dist"
+		"demo": "rm -rf example/dist/ && webpack --mode production --output-path example/dist/ --pregress --colors"
 	},
 	"dependencies": {
 		"antd": "^3.5.1",

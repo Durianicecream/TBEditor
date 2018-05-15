@@ -2,34 +2,37 @@ import React from 'react'
 import { Modal, Button } from 'antd'
 import Icon from '../.././components/Icon'
 
-const toggleBlock = (value) => {
+const toggleQuote = (value) => {
 	const change = value.change()
-	return change.setBlocks(hasBlock(value) ? 'paragraph' : 'quote').focus()
+	return change
+		.setBlocks(hasQuote(value) ? 'paragraph' : 'quote')
+		.setBlocks({ isVoid: false })
+		.focus()
 }
 
-const hasBlock = (value) => {
-	return value.blocks.some((node) => node.type === 'quote')
+const hasQuote = (value) => {
+	return value.blocks.every((node) => node.type === 'quote')
 }
 
 const ControlButton = ({ value, onChange }) => (
-	<span
-		className={`${hasBlock(value) ? 'active' : ''}`}
-		onClick={(e) => onChange(toggleBlock(value))}
-	>
-		<Icon name="quote-left" />
-	</span>
+	<Icon
+		className={`${hasQuote(value) ? 'active' : ''}`}
+		name="quote-left"
+		onClick={(e) => onChange(toggleQuote(value))}
+		tip="引用"
+	/>
 )
 
 export default (options) => {
 	return {
 		changes: {
-			toggleBlock
+			toggleQuote
 		},
 		components: {
 			ControlButton
 		},
 		helpers: {
-			hasBlock
+			hasQuote
 		},
 		plugins: {
 			renderNode: (props) => {

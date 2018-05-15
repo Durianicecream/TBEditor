@@ -22,8 +22,8 @@ const addBlocks = (change, imageList) => {
 
 const ControlButton = ({ value, onChange }) => {
 	return (
-		<span onClick={this.save}>
-			<Icon name="save" />
+		<span>
+			<Icon name="save" onClick={this.save} />
 		</span>
 	)
 }

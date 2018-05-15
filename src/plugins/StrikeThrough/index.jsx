@@ -1,35 +1,37 @@
 import React from 'react'
 import Icon from './../../components/Icon'
 
-const toggleMark = (change) => {
+const toggleStrike = (change) => {
 	return change.toggleMark('strike')
 }
 
 const ControlButton = ({ value, onChange }) => (
-	<span
-		className={`${hasMark(value) ? 'active' : ''}`}
-		onClick={(e) => onChange(toggleMark(value.change()))}
-	>
-		<Icon name="strikethrough" />
-	</span>
+	<Icon
+		className={`${hasStrike(value) ? 'active' : ''}`}
+		name="strikethrough"
+		onClick={(e) => onChange(toggleStrike(value.change()))}
+		tip="删除线"
+	/>
 )
 
 const isHotKey = (event) => {
 	return event.ctrlKey && event.key === '5'
 }
 
-const hasMark = () => {}
+const hasStrike = (value) => {
+	return value.activeMarks.some((mark) => mark.type === 'strikethrough')
+}
 
 export default (options) => {
 	return {
 		changes: {
-			toggleMark
+			toggleStrike
 		},
 		components: {
 			ControlButton
 		},
 		helpers: {
-			hasMark
+			hasStrike
 		},
 		plugins: {
 			renderMark: (props) => {
@@ -43,7 +45,7 @@ export default (options) => {
 
 				if (!isHotKey(event)) return
 				event.preventDefault()
-				change.toggleMark('strike')
+				change.toggleStrike('strike')
 				return true
 			}
 		}

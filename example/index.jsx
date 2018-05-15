@@ -21,11 +21,24 @@ class Demo extends React.Component {
 
 	render() {
 		return (
-			<FungoEditor
-				onChange={this.onChange}
-				uploadProps={this.uploadProps}
-				defaultValue={this.state.value}
-			/>
+			<div>
+				<FungoEditor
+					onChange={this.onChange}
+					uploadProps={this.uploadProps}
+					defaultValue={this.state.value}
+				/>
+				<div
+					style={{
+						margin: '0 auto',
+						marginTop: '20px',
+						width: '1000px',
+						padding: '10px'
+					}}
+				>
+					<h1>HTML文本</h1>
+					{this.state.value}
+				</div>
+			</div>
 		)
 	}
 }

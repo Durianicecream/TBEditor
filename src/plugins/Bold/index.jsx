@@ -1,7 +1,7 @@
 import React from 'react'
 import Icon from './../../components/Icon'
 
-const toggleMark = (change) => {
+const toggleBold = (change) => {
 	return change.toggleMark('bold')
 }
 
@@ -9,27 +9,29 @@ const isHotKey = (event) => {
 	return event.ctrlKey && event.key === 'b'
 }
 
-const hasMark = () => {}
+const hasBold = (value) => {
+	return value.activeMarks.some((mark) => mark.type === 'bold')
+}
 
 const ControlButton = ({ value, onChange }) => (
-	<span
-		className={`${hasMark(value) ? 'active' : ''}`}
-		onClick={(e) => onChange(toggleMark(value.change()))}
-	>
-		<Icon name="bold" />
-	</span>
+	<Icon
+		className={`${hasBold(value) ? 'active' : ''}`}
+		name="bold"
+		onClick={(e) => onChange(toggleBold(value.change()))}
+		tip="加粗"
+	/>
 )
 
 export default (options) => {
 	return {
 		changes: {
-			toggleMark
+			toggleBold
 		},
 		components: {
 			ControlButton
 		},
 		helpers: {
-			hasMark
+			hasBold
 		},
 		plugins: {
 			renderMark: (props) => {

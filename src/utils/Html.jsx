@@ -57,27 +57,27 @@ const RULES = [
 		serialize(obj, children) {
 			switch (obj.type) {
 				case 'paragraph':
-					return React.createElement('p', {}, children)
+					return <p>{children}</p>
 				case 'hr':
 					return <hr />
 				case 'h1':
-					return React.createElement('h1', {}, children)
+					return <h1>{children}</h1>
 				case 'h2':
-					return React.createElement('h2', {}, children)
+					return <h2>{children}</h2>
 				case 'h3':
-					return React.createElement('h3', {}, children)
+					return <h3>{children}</h3>
 				case 'quote':
-					return React.createElement('quote', {}, children)
+					return <quote>{children}</quote>
 				case 'bold':
-					return React.createElement('b', {}, children)
+					return <b>{children}</b>
 				case 'italic':
-					return React.createElement('i', {}, children)
+					return <i>{children}</i>
 				case 'strike':
-					return React.createElement('s', {}, children)
+					return <s>{children}</s>
 				case 'image':
 					return <img src={obj.data.get('src')} />
 				case 'link':
-					return React.createElement('a', {}, children)
+					return <a href={obj.data.get('href')}>{children}</a>
 			}
 		}
 	}

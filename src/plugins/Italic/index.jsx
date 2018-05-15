@@ -1,7 +1,7 @@
 import React from 'react'
 import Icon from './../../components/Icon'
 
-const toggleMark = (change) => {
+const toggleItalic = (change) => {
 	return change.toggleMark('italic')
 }
 
@@ -9,29 +9,30 @@ const isHotKey = (event) => {
 	return event.ctrlKey && event.key === 'i'
 }
 
-const hasMark = (value) => {
-	value.marks.some((mark) => mark.type === 'italic')
+const hasItalic = (value) => {
+	return value.activeMarks.some((mark) => mark.type === 'italic')
 }
 
 const ControlButton = ({ value, onChange }) => (
-	<span
-		className={`${hasMark(value) ? 'active' : ''}`}
-		onClick={(e) => onChange(toggleMark(value.change()))}
-	>
-		<Icon name="italic" />
-	</span>
+	<Icon
+		className={`${hasItalic(value) ? 'active' : ''}`}
+		name="italic"
+		onClick={(e) => onChange(toggleItalic(value.change()))}
+		className={`${hasItalic(value) ? 'active' : ''}`}
+		tip={'斜体'}
+	/>
 )
 
 export default (options) => {
 	return {
 		changes: {
-			toggleMark
+			toggleItalic
 		},
 		components: {
 			ControlButton
 		},
 		helpers: {
-			hasMark
+			hasItalic
 		},
 		plugins: {
 			renderMark: (props) => {
@@ -45,7 +46,7 @@ export default (options) => {
 
 				if (!isHotKey(event)) return
 				event.preventDefault()
-				change.toggleMark('italic')
+				change.toggleItalic('italic')
 				return true
 			}
 		}

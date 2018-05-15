@@ -48,6 +48,7 @@ export default class FungoEditor extends React.Component {
 			Image,
 			History
 		]
+		this.id = new Date().getTime()
 	}
 
 	onChange = ({ value }) => {
@@ -61,7 +62,7 @@ export default class FungoEditor extends React.Component {
 		const { uploadProps } = this.props
 		return (
 			<div className="fungo-editor">
-				<div className="fungo-editor-toolbar">
+				<div className="fungo-toolbar">
 					{this.tools.map((item, index) => {
 						const Button = item().components.ControlButton
 						if (index === 8)

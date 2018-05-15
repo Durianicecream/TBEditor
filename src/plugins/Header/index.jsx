@@ -1,15 +1,16 @@
 import React from 'react'
 import Icon from './../../components/Icon'
 
-const toggleBlock = (value, level) => {
+const toggleHeader = (value, level) => {
 	const change = value.change()
 	return change
-		.setBlocks(hasBlock(value, level) ? 'paragraph' : `h${level}`)
+		.setBlocks(hasHeader(value, level) ? 'paragraph' : `h${level}`)
+		.setBlocks({ isVoid: false })
 		.focus()
 }
 
-const hasBlock = (value, level) => {
-	return value.blocks.some((node) => node.type === `h${level}`)
+const hasHeader = (value, level) => {
+	return value.blocks.every((node) => node.type === `h${level}`)
 }
 
 const ControlButton = ({ value, onChange }) => {
@@ -17,13 +18,13 @@ const ControlButton = ({ value, onChange }) => {
 	return (
 		<span>
 			{levelList.map((level) => (
-				<span
-					className={`${hasBlock(value, level) ? 'active' : ''}`}
-					onClick={(e) => onChange(toggleBlock(value, level))}
+				<Icon
 					key={level}
-				>
-					<i className="fa">H{level}</i>
-				</span>
+					className={`${hasHeader(value, level) ? 'active' : ''}`}
+					name={`h${level}`}
+					onClick={(e) => onChange(toggleHeader(value, level))}
+					tip={`${level}级标题`}
+				/>
 			))}
 		</span>
 	)
@@ -32,13 +33,13 @@ const ControlButton = ({ value, onChange }) => {
 export default (options) => {
 	return {
 		changes: {
-			toggleBlock
+			toggleHeader
 		},
 		components: {
 			ControlButton
 		},
 		helpers: {
-			hasBlock
+			hasHeader
 		},
 		plugins: {
 			renderNode: (props) => {
