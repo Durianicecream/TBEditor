@@ -4,4 +4,4 @@
 
 ##
 
-在线演示 https://durianicecream.github.io/tb-editor/example/dist/index.html
+在线演示 https://durianicecream.github.io/tb-editor/example/dist/index

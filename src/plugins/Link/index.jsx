@@ -19,12 +19,19 @@ const hasLink = (value) => {
 	return value.inlines.some((inline) => inline.type == 'link')
 }
 
+const _findUrl = (url) => {
+	return url.replace(/^(https:\/\/|http:\/\/)/, '')
+}
+const _findProtocol = (url) => {
+	return url.match(/^(https:\/\/|http:\/\/)/, '')[1]
+}
+
 class ControlButton extends React.Component {
 	constructor() {
 		super()
 		this.state = {
 			modalVisible: false,
-			url: ''
+			url: 'http://'
 		}
 	}
 	showModal = (event) => {
@@ -42,9 +49,12 @@ class ControlButton extends React.Component {
 	hideModal = (event) => {
 		this.setState({ modalVisible: false })
 	}
-	handleKeyUp = (e) => {
+	handleUrlChange = (e) => {
 		const value = e.target.value
-		this.setState({ url: value })
+		this.setState({ url: `${_findProtocol(this.state.url)}${value}` })
+	}
+	handleProtocolChange = (value) => {
+		this.setState({ url: `${value}${_findUrl(this.state.url)}` })
 	}
 	handleLink = (event) => {
 		const { value, onChange } = this.props
@@ -72,13 +82,17 @@ class ControlButton extends React.Component {
 				>
 					<Input
 						addonBefore={
-							<Select defaultValue="http://" style={{ width: 90 }}>
+							<Select
+								style={{ width: 90 }}
+								onChange={this.handleProtocolChange}
+								value={_findProtocol(this.state.url)}
+							>
 								<Option value="http://">http://</Option>
 								<Option value="https://">https://</Option>
 							</Select>
 						}
-						onChange={this.handleKeyUp}
-						value={this.state.url}
+						onChange={this.handleUrlChange}
+						value={_findUrl(this.state.url)}
 					/>
 				</Modal>
 			</span>
@@ -104,7 +118,15 @@ export default (options) => {
 				if (node.type === 'link') {
 					const href = node.data.get('href')
 					return (
-						<a {...attributes} href={href}>
+						<a
+							{...attributes}
+							href={href}
+							onClick={(event) => {
+								if (event.ctrlKey) {
+									window.open(href)
+								}
+							}}
+						>
 							{children}
 						</a>
 					)
