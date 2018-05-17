@@ -45,7 +45,7 @@ export default (options) => {
 
 				if (!isHotKey(event)) return
 				event.preventDefault()
-				change.toggleStrike('strike')
+				change.toggleMark('strike')
 				return true
 			}
 		}

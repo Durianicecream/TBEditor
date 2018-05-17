@@ -21,7 +21,11 @@ class Demo extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div
+				style={{
+					paddingTop: '80px'
+				}}
+			>
 				<FungoEditor
 					onChange={this.onChange}
 					uploadProps={this.uploadProps}
@@ -30,9 +34,8 @@ class Demo extends React.Component {
 				<div
 					style={{
 						margin: '0 auto',
-						marginTop: '20px',
 						width: '1000px',
-						padding: '10px'
+						padding: '30px 0'
 					}}
 				>
 					<h1>HTML文本</h1>

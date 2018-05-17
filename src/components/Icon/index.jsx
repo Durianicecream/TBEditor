@@ -7,7 +7,13 @@ export default class Icon extends React.Component {
 	render() {
 		const { name, className, tip } = this.props
 		return (
-			<Tooltip title={tip}>
+			<Tooltip
+				title={tip}
+				arrowPointAtCenter
+				mouseEnterDelay={0.4}
+				mouseLeaveDelay={0}
+				placement="bottom"
+			>
 				<i
 					{...this.props}
 					className={`fungo-button fa fa-${name} ${className ? className : ''}`}

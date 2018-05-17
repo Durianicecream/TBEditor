@@ -18,12 +18,15 @@ import {
 	Emoji,
 	History
 } from './plugins'
+import { FullScreen, Preview } from './features'
 import HtmlSerializer from './utils/Html'
 
 export default class FungoEditor extends React.Component {
 	constructor() {
 		super()
-		this.state = {}
+		this.state = {
+			fullScreen: false
+		}
 		this.plugins = [
 			StrikeThrough().plugins,
 			Bold().plugins,
@@ -31,7 +34,6 @@ export default class FungoEditor extends React.Component {
 			Quote().plugins,
 			Hr().plugins,
 			Header().plugins,
-			Paragraph().plugins,
 			Link().plugins,
 			Image().plugins,
 			Common().plugins
@@ -48,7 +50,6 @@ export default class FungoEditor extends React.Component {
 			Image,
 			History
 		]
-		this.id = new Date().getTime()
 	}
 
 	onChange = ({ value }) => {
@@ -56,31 +57,31 @@ export default class FungoEditor extends React.Component {
 		this.props.onChange(HtmlSerializer.serialize(value))
 	}
 
+	handleFullScreen = (isFull) => {
+		this.setState({ fullScreen: isFull })
+	}
+
 	render() {
 		const value =
 			this.state.value || HtmlSerializer.deserialize(this.props.defaultValue)
 		const { uploadProps } = this.props
 		return (
-			<div className="fungo-editor">
+			<div
+				className={`fungo-editor ${this.state.fullScreen ? 'full-screen' : ''}`}
+			>
 				<div className="fungo-toolbar">
 					{this.tools.map((item, index) => {
 						const Button = item().components.ControlButton
-						if (index === 8)
-							// image
-							return (
-								<Button
-									key={index}
-									onChange={this.onChange}
-									value={value}
-									uploadProps={uploadProps}
-								/>
-							)
 						return <Button key={index} onChange={this.onChange} value={value} />
 					})}
-					{/* <i className="fa fa-save" title="保存 ctrl+s" />
-					<i className="fa fa-window-maximize" title="全屏" /> */}
+					<Preview value={value} />
+					<FullScreen
+						isFullScreen={this.state.fullScreen}
+						onChange={this.handleFullScreen}
+					/>
 				</div>
 				<Editor
+					{...this.props}
 					className="fungo-contenteditable"
 					plugins={this.plugins}
 					value={value}

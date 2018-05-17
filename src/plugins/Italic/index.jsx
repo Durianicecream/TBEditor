@@ -19,7 +19,7 @@ const ControlButton = ({ value, onChange }) => (
 		name="italic"
 		onClick={(e) => onChange(toggleItalic(value.change()))}
 		className={`${hasItalic(value) ? 'active' : ''}`}
-		tip={'斜体'}
+		tip="斜体"
 	/>
 )
 
@@ -46,7 +46,7 @@ export default (options) => {
 
 				if (!isHotKey(event)) return
 				event.preventDefault()
-				change.toggleItalic('italic')
+				change.toggleMark('italic')
 				return true
 			}
 		}

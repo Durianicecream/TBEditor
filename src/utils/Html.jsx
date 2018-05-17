@@ -67,7 +67,7 @@ const RULES = [
 				case 'h3':
 					return <h3>{children}</h3>
 				case 'quote':
-					return <quote>{children}</quote>
+					return <blockquote>{children}</blockquote>
 				case 'bold':
 					return <b>{children}</b>
 				case 'italic':
@@ -77,7 +77,11 @@ const RULES = [
 				case 'image':
 					return <img src={obj.data.get('src')} />
 				case 'link':
-					return <a href={obj.data.get('href')}>{children}</a>
+					return (
+						<a href={obj.data.get('href')} target="_blank">
+							{children}
+						</a>
+					)
 			}
 		}
 	}

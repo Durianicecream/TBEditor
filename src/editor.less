@@ -6,48 +6,64 @@
 	width: 1000px;
 	border: solid 1px #ddd;
 	border-radius: 4px;
-	margin-top: 80px;
 	::-webkit-scrollbar {
 		width: 6px;
 	}
 	::-webkit-scrollbar-thumb {
 		background-color: #cbcfd6;
 	}
-}
-.fungo-contenteditable {
-	padding: 20px;
-	min-height: 300px;
-	max-height: 600px;
-	overflow-y: auto;
-	blockquote {
-		border-left: 2px solid #ddd;
-		margin-left: 0;
-		margin-right: 0;
-		padding-left: 10px;
-		color: #aaa;
-	}
-	.selected.emoji {
-		outline: solid 2px rgb(61, 112, 212);
-	}
-	img {
-		max-width: 100%;
-		margin: 1em auto;
-		display: block;
-		&.selected {
+	.fungo-contenteditable {
+		padding: 20px;
+		min-height: 300px;
+		max-height: 600px;
+		overflow-y: auto;
+		blockquote {
+			border-left: 2px solid #ddd;
+			margin-left: 0;
+			margin-right: 0;
+			padding-left: 10px;
+			color: #aaa;
+		}
+		.selected.emoji {
 			outline: solid 2px rgb(61, 112, 212);
 		}
-	}
-	hr {
-		margin: 1em 0;
-		border: none;
-		border-top: 1px dashed #999;
-		&.selected {
-			outline: solid 2px rgb(61, 112, 212);
+		img {
+			max-width: 100%;
+			margin: 1em auto;
+			display: block;
+			&.selected {
+				outline: solid 2px rgb(61, 112, 212);
+			}
+		}
+		hr {
+			margin: 2em 0;
+			border: none;
+			border-top: 1px solid #ddd;
+			&.selected {
+				outline: solid 2px rgb(61, 112, 212);
+			}
 		}
 	}
-}
-.fungo-toolbar {
-	padding: 10px;
-	color: #999;
-	border-bottom: solid 1px #ddd;
+	.fungo-toolbar {
+		padding: 10px;
+		color: #999;
+		border-bottom: solid 1px #ddd;
+	}
+	&.full-screen {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 999;
+		background: #fff;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		.fungo-contenteditable {
+			height: 100%;
+			min-height: none;
+			max-height: none;
+		}
+	}
 }

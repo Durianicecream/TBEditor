@@ -11,7 +11,7 @@ const toggleQuote = (value) => {
 }
 
 const hasQuote = (value) => {
-	return value.blocks.every((node) => node.type === 'quote')
+	return value.blocks.some((node) => node.type == 'quote')
 }
 
 const ControlButton = ({ value, onChange }) => (
