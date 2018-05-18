@@ -25,8 +25,7 @@ const showPreview = (value) => {
 
 		blockquote {
 			border-left: 2px solid #ddd;
-			margin-left: 0;
-			margin-right: 0;
+			margin: 2em 0;
 			padding-left: 10px;
 			color: #aaa;
 		}

@@ -10,7 +10,6 @@ import {
 	Quote,
 	Hr,
 	Header,
-	Paragraph,
 	Link,
 	Image,
 	Hisrory,
@@ -72,7 +71,14 @@ export default class FungoEditor extends React.Component {
 				<div className="fungo-toolbar">
 					{this.tools.map((item, index) => {
 						const Button = item().components.ControlButton
-						return <Button key={index} onChange={this.onChange} value={value} />
+						return (
+							<Button
+								key={index}
+								onChange={this.onChange}
+								value={value}
+								uploadProps={uploadProps}
+							/>
+						)
 					})}
 					<Preview value={value} />
 					<FullScreen

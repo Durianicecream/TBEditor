@@ -8,11 +8,10 @@ class Demo extends React.Component {
 		this.state = {
 			value: ''
 		}
-	}
-
-	uploadProps = {
-		name: 'image',
-		action: '/api/upload/image'
+		this.uploadProps = {
+			name: 'image',
+			action: '/api/upload/image'
+		}
 	}
 
 	onChange = (value) => {

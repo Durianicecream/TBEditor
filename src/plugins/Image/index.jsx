@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Upload } from 'antd'
+import { Modal, Upload, message } from 'antd'
 import Icon from './../../components/Icon'
 
 const addImage = (change, src) => {
@@ -42,7 +42,13 @@ class ControlButton extends React.Component {
 	handleAddImage = (event) => {
 		const { value, onChange } = this.props
 		const { fileList } = this.state
-		onChange(addImages(value.change(), fileList))
+		const isUploading = fileList.some((item) => item.status === 'uploading')
+		if (isUploading) {
+			message.error('请等待上传完成')
+			return
+		}
+		const imageList = fileList.filter((item) => item.status === 'done')
+		onChange(addImages(value.change(), imageList))
 		this.setState({ modalVisible: false, fileList: [] })
 	}
 

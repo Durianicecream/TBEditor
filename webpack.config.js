@@ -23,7 +23,7 @@ module.exports = Object.assign(baseConfig, {
 		inline: true,
 		proxy: {
 			'/api/*': {
-				target: 'http://tuobing.leanapp.cn',
+				target: 'http://localhost:3000',
 				changeOrigin: true
 			}
 		}

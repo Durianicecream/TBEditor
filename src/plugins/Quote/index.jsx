@@ -14,6 +14,11 @@ const hasQuote = (value) => {
 	return value.blocks.some((node) => node.type == 'quote')
 }
 
+const isContinuousBr = (value) => {
+	const regExp = /\n$/
+	return regExp.test(value.endText.text)
+}
+
 const ControlButton = ({ value, onChange }) => (
 	<Icon
 		className={`${hasQuote(value) ? 'active' : ''}`}
@@ -40,6 +45,17 @@ export default (options) => {
 				if (node.type === 'quote') {
 					return <blockquote {...attributes}>{children}</blockquote>
 				}
+			},
+			onKeyDown: (event, change) => {
+				if (event.keyCode !== 13) return
+				if (!hasQuote(change.value)) return
+				// 如果是连续插入换行,则不处理
+				if (isContinuousBr(change.value)) {
+					change.deleteBackward()
+					return
+				}
+				change.insertText('\n')
+				return true
 			}
 		}
 	}

@@ -43,7 +43,6 @@ export default (options) => {
 		},
 		components: {
 			ControlButton
-		},
-		plugins: {}
+		}
 	}
 }

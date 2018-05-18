@@ -1,3 +1,4 @@
+import React from 'react'
 import { Block } from 'slate'
 import HtmlSerializer from '../../utils/Html'
 import { getEventTransfer } from 'slate-react'
@@ -33,6 +34,12 @@ export default (options) => {
 			},
 			onCopy: (event, change) => {
 				const html = HtmlSerializer.serialize(change.value)
+			},
+			renderNode: (props) => {
+				const { children, node, attributes } = props
+				if (node.type === 'paragraph') {
+					return <p {...attributes}>{children}</p>
+				}
 			}
 		}
 	}

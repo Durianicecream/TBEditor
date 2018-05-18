@@ -39,7 +39,7 @@ class ControlButton extends React.Component {
 		const change = value.change()
 		const href = this.state.href
 		if (hasLink(value)) {
-			change.call(removeLink)
+			onChange(removeLink(change))
 		} else if (!value.isExpanded) {
 			message.error('请选择需要链接的文本')
 		} else {
@@ -115,7 +115,7 @@ export default (options) => {
 		plugins: {
 			renderNode: (props) => {
 				const { attributes, children, node } = props
-				if (node.type === 'link') {
+				if (node.type == 'link') {
 					const href = node.data.get('href')
 					return (
 						<a
