@@ -21308,7 +21308,6 @@ li.ant-tree-treenode-disabled > .ant-tree-node-content-wrapper:hover {
   width: 1000px;
   border: solid 1px #ddd;
   border-radius: 4px;
-  margin-top: 80px;
 }
 .fungo-editor ::-webkit-scrollbar {
   width: 6px;
@@ -21316,44 +21315,58 @@ li.ant-tree-treenode-disabled > .ant-tree-node-content-wrapper:hover {
 .fungo-editor ::-webkit-scrollbar-thumb {
   background-color: #cbcfd6;
 }
-.fungo-contenteditable {
+.fungo-editor .fungo-contenteditable {
   padding: 20px;
   min-height: 300px;
   max-height: 600px;
   overflow-y: auto;
 }
-.fungo-contenteditable blockquote {
+.fungo-editor .fungo-contenteditable blockquote {
   border-left: 2px solid #ddd;
-  margin-left: 0;
-  margin-right: 0;
+  margin: 2em 0;
   padding-left: 10px;
   color: #aaa;
 }
-.fungo-contenteditable .selected.emoji {
+.fungo-editor .fungo-contenteditable .selected.emoji {
   outline: solid 2px #3d70d4;
 }
-.fungo-contenteditable img {
+.fungo-editor .fungo-contenteditable img {
   max-width: 100%;
-  margin: 0 auto;
-  margin-bottom: 1em;
+  margin: 1em auto;
   display: block;
 }
-.fungo-contenteditable img.selected {
+.fungo-editor .fungo-contenteditable img.selected {
   outline: solid 2px #3d70d4;
 }
-.fungo-contenteditable hr {
-  margin-bottom: 1em;
-  height: 1px;
+.fungo-editor .fungo-contenteditable hr {
+  margin: 2em 0;
   border: none;
-  border-top: 1px dashed #999;
+  border-top: 1px solid #ddd;
 }
-.fungo-contenteditable hr.selected {
+.fungo-editor .fungo-contenteditable hr.selected {
   outline: solid 2px #3d70d4;
 }
-.fungo-toolbar {
+.fungo-editor .fungo-toolbar {
   padding: 10px;
   color: #999;
   border-bottom: solid 1px #ddd;
+}
+.fungo-editor.full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.fungo-editor.full-screen .fungo-contenteditable {
+  height: 100%;
+  min-height: none;
+  max-height: none;
 }
 
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
