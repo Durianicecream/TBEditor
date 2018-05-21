@@ -2,9 +2,74 @@ const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const baseConfig = require('./webpack.config.base')
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+// 	.BundleAnalyzerPlugin
 
-module.exports = Object.assign(baseConfig, {
+module.exports = {
+	module: {
+		rules: [{
+				test: /\.(less|css)$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader'
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							ident: 'postcss',
+							plugins: [
+								require('autoprefixer')({
+									broswer: 'last 5 versions'
+								}),
+							]
+						}
+					},
+					{
+						loader: 'less-loader',
+						options: {
+							javascriptEnabled: true
+						}
+					}
+				]
+			},
+			{
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader'
+				}
+			},
+			{
+				test: /\.(png|svg)$/,
+				use: [{
+					loader: 'url-loader',
+					options: {
+						limit: 8192,
+						name: '[name]_[hash:6].[ext]'
+					}
+				}]
+			},
+			{
+				test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+				use: [{
+					loader: 'url-loader',
+					options: {
+						limit: 12000,
+						name: '[name]_[hash:6].[ext]'
+					}
+				}]
+			}
+		]
+	},
+	resolve: {
+		modules: [
+			path.join(__dirname, './src'),
+			path.join(__dirname, './node_modules'),
+			path.join(__dirname, './example')
+		],
+		extensions: ['.js', '.jsx']
+	},
 	entry: {
 		index: './example/index.jsx'
 	},
@@ -28,4 +93,4 @@ module.exports = Object.assign(baseConfig, {
 			}
 		}
 	}
-})
+}

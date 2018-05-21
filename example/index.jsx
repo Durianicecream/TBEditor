@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import FungoEditor from '.././src'
+import FungoEditor from '../src/index'
 
 class Demo extends React.Component {
 	constructor() {
@@ -10,7 +10,7 @@ class Demo extends React.Component {
 		}
 		this.uploadProps = {
 			name: 'image',
-			action: '/api/upload/image'
+			action: 'http://tuobing.leanapp.cn/api/upload/image'
 		}
 	}
 
