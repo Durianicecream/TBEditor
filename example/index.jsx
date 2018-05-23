@@ -22,7 +22,9 @@ class Demo extends React.Component {
 		return (
 			<div
 				style={{
-					paddingTop: '80px'
+					paddingTop: '80px',
+					width: '1000px',
+					margin: '0 auto'
 				}}
 			>
 				<FungoEditor
@@ -32,8 +34,6 @@ class Demo extends React.Component {
 				/>
 				<div
 					style={{
-						margin: '0 auto',
-						width: '1000px',
 						padding: '30px 0'
 					}}
 				>

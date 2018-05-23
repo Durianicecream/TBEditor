@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Editor, Plain } from 'slate-react'
+import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import './editor.less'
 import {
@@ -24,7 +24,9 @@ export default class FungoEditor extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			fullScreen: false
+			fullScreen: false,
+			hasReceivedHtml: false,
+			value: Value.create({})
 		}
 		this.plugins = [
 			StrikeThrough().plugins,
@@ -60,9 +62,17 @@ export default class FungoEditor extends React.Component {
 		this.setState({ fullScreen: isFull })
 	}
 
+	componentWillReceiveProps(props) {
+		if (!this.state.hasReceivedHtml && props.defaultValue) {
+			this.setState({
+				value: HtmlSerializer.deserialize(props.defaultValue),
+				hasReceivedHtml: true
+			})
+		}
+	}
+
 	render() {
-		const value =
-			this.state.value || HtmlSerializer.deserialize(this.props.defaultValue)
+		const value = this.state.value
 		const { uploadProps } = this.props
 		return (
 			<div

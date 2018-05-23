@@ -10,7 +10,7 @@ const toggleHeader = (value, level) => {
 }
 
 const hasHeader = (value, level) => {
-	return value.blocks.every((node) => node.type === `h${level}`)
+	return value.blocks.some((node) => node.type === `h${level}`)
 }
 
 const ControlButton = ({ value, onChange }) => {
