@@ -21,12 +21,28 @@ import { FullScreen, Preview } from './features'
 import HtmlSerializer from './utils/Html'
 
 export default class FungoEditor extends React.Component {
+	static propTypes = {
+		defaultValue: PropTypes.string.isRequired,
+		uploadProps: PropTypes.shape({
+			name: PropTypes.string,
+			action: PropTypes.string
+		}),
+		onChange: PropTypes.func.isRequired
+	}
+
+	static defaultProps = {
+		uploadProps: {
+			name: 'image',
+			action: '/'
+		}
+	}
+
 	constructor() {
 		super()
 		this.state = {
 			fullScreen: false,
 			hasReceivedHtml: false,
-			value: Value.create({})
+			value: HtmlSerializer.deserialize('')
 		}
 		this.plugins = [
 			StrikeThrough().plugins,
@@ -63,7 +79,10 @@ export default class FungoEditor extends React.Component {
 	}
 
 	componentWillReceiveProps(props) {
-		if (!this.state.hasReceivedHtml && props.defaultValue) {
+		if (
+			!this.state.hasReceivedHtml &&
+			props.defaultValue.replace(/(<p>|<\/p>)/g, '')
+		) {
 			this.setState({
 				value: HtmlSerializer.deserialize(props.defaultValue),
 				hasReceivedHtml: true
@@ -106,13 +125,4 @@ export default class FungoEditor extends React.Component {
 			</div>
 		)
 	}
-}
-
-FungoEditor.propTypes = {
-	defaultValue: PropTypes.string.isRequired,
-	uploadProps: PropTypes.shape({
-		name: PropTypes.string,
-		action: PropTypes.string
-	}),
-	onChange: PropTypes.func.isRequired
 }

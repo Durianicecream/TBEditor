@@ -1,6 +1,6 @@
 {
 	"name": "tb-editor",
-	"version": "0.3.9",
+	"version": "0.4.2",
 	"description": "一个基于slate.js的所见即所得的富文本编辑器",
 	"author": "TB",
 	"license": "MIT",
