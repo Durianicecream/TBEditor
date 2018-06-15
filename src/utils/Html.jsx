@@ -89,10 +89,8 @@ const RULES = [
 
 const parseHtml = (html) => {
 	// img脱去a标签包裹
-	console.log(html)
 	const regx = /<a\b.*?>([\S\s]*?<img\b.*?>[\S\s]*?)<\/a>/g
 	html = html.replace(regx, '$1')
-	console.log(html)
 	const parsed = new DOMParser().parseFromString(html, 'text/html')
 	const { body } = parsed
 	return body
