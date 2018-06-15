@@ -16,7 +16,7 @@ export default class Icon extends React.Component {
 			>
 				<i
 					{...this.props}
-					className={`fungo-button fa fa-${name} ${className ? className : ''}`}
+					className={`tb-button fa fa-${name} ${className ? className : ''}`}
 				/>
 			</Tooltip>
 		)

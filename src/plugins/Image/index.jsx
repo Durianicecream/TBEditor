@@ -75,6 +75,10 @@ class ControlButton extends React.Component {
 						fileList={this.state.fileList}
 						onPreview={this.handlePreview}
 						onChange={this.handleChange}
+						showUploadList={{
+							showPreviewIcon: false,
+							showRemoveIcon: true
+						}}
 						multiple
 					>
 						<div>

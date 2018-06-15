@@ -8,9 +8,9 @@ export default class Modal extends React.Component {
 	}
 
 	render() {
-		const { maxHeight = 300, width = 200, children, visibale } = this.props
+		const { children, visibale } = this.props
 		return (
-			<div className={`modal ${visibale ? 'active' : ''}`}>
+			<div className={`tb-modal ${visibale ? 'active' : ''}`}>
 				<div className="mask" />
 				{children}
 			</div>

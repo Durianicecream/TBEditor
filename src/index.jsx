@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Editor } from 'slate-react'
-import { Value } from 'slate'
 import './editor.less'
 import {
 	StrikeThrough,
@@ -12,7 +11,6 @@ import {
 	Header,
 	Link,
 	Image,
-	Hisrory,
 	Common,
 	Emoji,
 	History
@@ -20,9 +18,9 @@ import {
 import { FullScreen, Preview } from './features'
 import HtmlSerializer from './utils/Html'
 
-export default class FungoEditor extends React.Component {
+export default class TbEditor extends React.Component {
 	static propTypes = {
-		defaultValue: PropTypes.string.isRequired,
+		defaultValue: PropTypes.string,
 		uploadProps: PropTypes.shape({
 			name: PropTypes.string,
 			action: PropTypes.string
@@ -31,17 +29,18 @@ export default class FungoEditor extends React.Component {
 	}
 
 	static defaultProps = {
+		defaultValue: '',
 		uploadProps: {
 			name: 'image',
-			action: '/'
+			action: '/upload'
 		}
 	}
 
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			fullScreen: false,
-			hasReceivedHtml: false,
+			hasReceivedValue: false,
 			value: HtmlSerializer.deserialize('')
 		}
 		this.plugins = [
@@ -80,12 +79,12 @@ export default class FungoEditor extends React.Component {
 
 	componentWillReceiveProps(props) {
 		if (
-			!this.state.hasReceivedHtml &&
+			!this.state.hasReceivedValue &&
 			props.defaultValue.replace(/(<p>|<\/p>)/g, '')
 		) {
 			this.setState({
 				value: HtmlSerializer.deserialize(props.defaultValue),
-				hasReceivedHtml: true
+				hasReceivedValue: true
 			})
 		}
 	}
@@ -95,9 +94,10 @@ export default class FungoEditor extends React.Component {
 		const { uploadProps } = this.props
 		return (
 			<div
-				className={`fungo-editor ${this.state.fullScreen ? 'full-screen' : ''}`}
+				className={`tb-editor
+				${this.state.fullScreen ? 'full-screen' : ''}`}
 			>
-				<div className="fungo-toolbar">
+				<div className="tb-toolbar">
 					{this.tools.map((item, index) => {
 						const Button = item().components.ControlButton
 						return (
@@ -117,7 +117,7 @@ export default class FungoEditor extends React.Component {
 				</div>
 				<Editor
 					{...this.props}
-					className="fungo-contenteditable"
+					className="tb-contenteditable"
 					plugins={this.plugins}
 					value={value}
 					onChange={this.onChange}

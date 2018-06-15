@@ -3,7 +3,7 @@ import './index.less'
 
 export default function Dropdown({ type, data, visible = false }) {
 	return (
-		<span className="dropdown">
+		<span className="tb-dropdown">
 			<ul
 				className={visible ? 'active' : ''}
 				onClick={(e) => {

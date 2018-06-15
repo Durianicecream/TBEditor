@@ -1,12 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import FungoEditor from '../src/index'
+import TbEditor from '../src/index'
 
 class Demo extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			value: ''
+			value: '',
+			defaultValue: '随便输入点什么吧...😃'
 		}
 		this.uploadProps = {
 			name: 'image',
@@ -27,10 +28,10 @@ class Demo extends React.Component {
 					margin: '0 auto'
 				}}
 			>
-				<FungoEditor
+				<TbEditor
 					onChange={this.onChange}
 					uploadProps={this.uploadProps}
-					defaultValue={this.state.value}
+					defaultValue={this.state.defaultValue}
 				/>
 				<div
 					style={{

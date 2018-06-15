@@ -8,37 +8,32 @@ const showPreview = (value) => {
 		window.previewWindow.close()
 	}
 	window.previewWindow = window.open('/')
-	window.previewWindow.document.write(html)
 	window.previewWindow.document.write(`
-	<style>
-		body {
-			width: 900px;
-			margin: 0 auto;
-			padding: 40px;
-		}
-
-		img {
-			max-width: 100%;
-			margin: 1em auto;
-			display: block;
-		}
-
-		blockquote {
-			border-left: 2px solid #ddd;
-			margin: 2em 0;
-			padding-left: 10px;
-			color: #aaa;
-		}
-
-		hr {
-			margin: 2em 0;
-			border: none;
-			border-top: 1px solid #ddd;
-		}
-		p {
-			marign 1em 0;
-		}
-	</style>
+	<!DOCTYPE html>
+  <html lang="en">
+  <head><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    img{
+      max-width:100%;
+    }
+    body{
+      padding:12px 4%;
+      margin:0;
+    }
+    p{
+      line-height: 27px;
+      font-size: 17px;
+      color:#242529;
+      margin: 12px 0;
+      word-wrap:break-word;
+      word-break:break-all;
+    }
+  </style>
+  </head>
+  <body>${html}</body>
+	</html>
 	`)
 }
 
