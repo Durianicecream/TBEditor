@@ -1,6 +1,11 @@
 import React from 'react'
-import { Modal, Upload, message } from 'antd'
+import Modal from 'antd/lib/modal'
+import Upload from 'antd/lib/upload'
+import message from 'antd/lib/message'
 import Icon from './../../components/Icon'
+import 'antd/lib/modal/style'
+import 'antd/lib/upload/style'
+import 'antd/lib/message/style'
 
 const addImage = (change, src) => {
 	try {

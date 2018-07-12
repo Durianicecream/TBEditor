@@ -1,5 +1,6 @@
 import React from 'react'
-import { Tooltip } from 'antd'
+import Tooltip from 'antd/lib/tooltip'
+import 'antd/lib/tooltip/style'
 import './font-awesome.css'
 import './index.less'
 

@@ -1,7 +1,8 @@
 import React from 'react'
-import { message } from 'antd'
+import message from 'antd/lib/message'
 import Icon from './../../components/Icon'
 import DropDown from './../../components/Dropdown'
+import 'antd/lib/message/style'
 
 const addEmoji = (value, emoji) => {
 	const change = value.change()

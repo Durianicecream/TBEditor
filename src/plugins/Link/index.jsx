@@ -1,6 +1,13 @@
 import React from 'react'
-import { Modal, Input, Select, message } from 'antd'
+import Modal from 'antd/lib/modal'
+import Input from 'antd/lib/input'
+import Select from 'antd/lib/select'
+import message from 'antd/lib/message'
 import Icon from './../../components/Icon'
+import 'antd/lib/modal/style'
+import 'antd/lib/input/style'
+import 'antd/lib/select/style'
+import 'antd/lib/message/style'
 
 const addLink = (change, href) => {
 	return change

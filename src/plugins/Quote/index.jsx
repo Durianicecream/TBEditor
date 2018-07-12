@@ -1,5 +1,4 @@
 import React from 'react'
-import { Modal, Button } from 'antd'
 import Icon from '../.././components/Icon'
 
 const toggleQuote = (value) => {
