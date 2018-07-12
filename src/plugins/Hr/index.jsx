@@ -4,10 +4,15 @@ import Icon from './../../components/Icon'
 const addHr = (value) => {
 	const change = value.change()
 	const node = value.focusBlock
-	return change.collapseToEndOf(node).insertBlock({
-		type: 'hr',
-		isVoid: true
-	})
+	try {
+		change.collapseToEndOf(node).insertBlock({
+			type: 'hr',
+			isVoid: true
+		})
+	} catch (err) {
+		message.error('插入失败')
+	}
+	return change
 }
 
 const ControlButton = ({ value, onChange }) => (

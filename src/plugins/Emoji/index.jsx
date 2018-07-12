@@ -1,13 +1,19 @@
 import React from 'react'
+import { message } from 'antd'
 import Icon from './../../components/Icon'
 import DropDown from './../../components/Dropdown'
 
 const addEmoji = (value, emoji) => {
 	const change = value.change()
+	try {
+		change
+			.insertText(emoji)
+			.collapseToStartOfNextText()
+			.focus()
+	} catch (err) {
+		message.error('插入失败')
+	}
 	return change
-		.insertText(emoji)
-		.collapseToStartOfNextText()
-		.focus()
 }
 
 const EMOJIS = [

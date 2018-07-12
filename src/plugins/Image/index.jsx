@@ -3,21 +3,30 @@ import { Modal, Upload, message } from 'antd'
 import Icon from './../../components/Icon'
 
 const addImage = (change, src) => {
-	return change.insertBlock({
-		type: 'image',
-		isVoid: true,
-		data: { src }
-	})
-}
-
-const addImages = (change, imageList) => {
-	imageList.forEach((item) => {
+	try {
 		change.insertBlock({
 			type: 'image',
 			isVoid: true,
-			data: { src: item.response.data.url }
+			data: { src }
 		})
-	})
+	} catch (err) {
+		message.error('插入失败')
+	}
+	return change
+}
+
+const addImages = (change, imageList) => {
+	try {
+		imageList.forEach((item) => {
+			change.insertBlock({
+				type: 'image',
+				isVoid: true,
+				data: { src: item.response.data.url }
+			})
+		})
+	} catch (err) {
+		message.error('插入失败')
+	}
 	return change
 }
 
