@@ -23,11 +23,17 @@ class Demo extends React.Component {
 		return (
 			<div
 				style={{
-					paddingTop: '80px',
+					paddingTop: '60px',
 					width: '1000px',
 					margin: '0 auto'
 				}}
 			>
+				<h3 style={{ marginBottom: 30 }}>
+					Github 仓库地址：
+					<a href="https://github.com/Durianicecream/tb-editor" target="_blank">
+						https://github.com/Durianicecream/tb-editor
+					</a>
+				</h3>
 				<TbEditor
 					onChange={this.onChange}
 					uploadProps={this.uploadProps}
