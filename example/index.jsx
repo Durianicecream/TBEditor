@@ -11,7 +11,7 @@ class Demo extends React.Component {
 		}
 		this.uploadProps = {
 			name: 'image',
-			action: 'http://tuobing.leanapp.cn/api/upload/image'
+			action: 'https://tuobing.leanapp.cn/api/upload/image'
 		}
 	}
 

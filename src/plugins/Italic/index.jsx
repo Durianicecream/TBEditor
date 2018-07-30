@@ -17,7 +17,10 @@ const ControlButton = ({ value, onChange }) => (
 	<Icon
 		className={`${hasItalic(value) ? 'active' : ''}`}
 		name="italic"
-		onClick={(e) => onChange(toggleItalic(value.change()))}
+		onMouseDown={(e) => {
+			e.preventDefault()
+			onChange(toggleItalic(value.change()))
+		}}
 		className={`${hasItalic(value) ? 'active' : ''}`}
 		tip="斜体"
 	/>
@@ -46,7 +49,7 @@ export default (options) => {
 
 				if (!isHotKey(event)) return
 				event.preventDefault()
-				change.toggleMark('italic')
+				change.call(toggleItalic)
 				return true
 			}
 		}

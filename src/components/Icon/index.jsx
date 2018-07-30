@@ -13,7 +13,7 @@ export default class Icon extends React.Component {
 				arrowPointAtCenter
 				mouseEnterDelay={0.4}
 				mouseLeaveDelay={0}
-				placement="bottom"
+				placement="top"
 			>
 				<i
 					{...this.props}

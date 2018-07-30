@@ -16,7 +16,13 @@ const addHr = (value) => {
 }
 
 const ControlButton = ({ value, onChange }) => (
-	<Icon name="minus" onClick={(e) => onChange(addHr(value))} tip={'分割线'} />
+	<Icon
+		name="minus"
+		onClick={(e) => {
+			onChange(addHr(value))
+		}}
+		tip="分割线"
+	/>
 )
 
 export default (options) => {

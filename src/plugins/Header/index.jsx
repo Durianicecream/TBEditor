@@ -6,7 +6,6 @@ const toggleHeader = (value, level) => {
 	return change
 		.setBlocks(hasHeader(value, level) ? 'paragraph' : `h${level}`)
 		.setBlocks({ isVoid: false })
-		.focus()
 }
 
 const hasHeader = (value, level) => {
@@ -22,7 +21,10 @@ const ControlButton = ({ value, onChange }) => {
 					key={level}
 					className={`${hasHeader(value, level) ? 'active' : ''}`}
 					name={`h${level}`}
-					onClick={(e) => onChange(toggleHeader(value, level))}
+					onMouseDown={(e) => {
+						e.preventDefault()
+						onChange(toggleHeader(value, level))
+					}}
 					tip={`${level}级标题`}
 				/>
 			))}

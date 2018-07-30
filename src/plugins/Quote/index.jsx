@@ -6,7 +6,6 @@ const toggleQuote = (value) => {
 	return change
 		.setBlocks(hasQuote(value) ? 'paragraph' : 'quote')
 		.setBlocks({ isVoid: false })
-		.focus()
 }
 
 const hasQuote = (value) => {
@@ -22,7 +21,10 @@ const ControlButton = ({ value, onChange }) => (
 	<Icon
 		className={`${hasQuote(value) ? 'active' : ''}`}
 		name="quote-left"
-		onClick={(e) => onChange(toggleQuote(value))}
+		onMouseDown={(e) => {
+			e.preventDefault()
+			onChange(toggleQuote(value))
+		}}
 		tip="引用"
 	/>
 )

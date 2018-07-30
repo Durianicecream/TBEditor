@@ -17,7 +17,10 @@ const ControlButton = ({ value, onChange }) => (
 	<Icon
 		className={`${hasBold(value) ? 'active' : ''}`}
 		name="bold"
-		onClick={(e) => onChange(toggleBold(value.change()))}
+		onMouseDown={(e) => {
+			e.preventDefault()
+			onChange(toggleBold(value.change()))
+		}}
 		tip="加粗"
 	/>
 )
@@ -45,7 +48,7 @@ export default (options) => {
 
 				if (!isHotKey(event)) return
 				event.preventDefault()
-				change.toggleMark('bold')
+				change.call(toggleBold)
 				return true
 			}
 		}

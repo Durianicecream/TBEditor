@@ -9,7 +9,10 @@ const ControlButton = ({ value, onChange }) => (
 	<Icon
 		className={`${hasStrike(value) ? 'active' : ''}`}
 		name="strikethrough"
-		onClick={(e) => onChange(toggleStrike(value.change()))}
+		onMouseDown={(e) => {
+			e.preventDefault()
+			onChange(toggleStrike(value.change()))
+		}}
 		tip="删除线"
 	/>
 )
@@ -19,7 +22,7 @@ const isHotKey = (event) => {
 }
 
 const hasStrike = (value) => {
-	return value.activeMarks.some((mark) => mark.type === 'strikethrough')
+	return value.activeMarks.some((mark) => mark.type === 'strike')
 }
 
 export default (options) => {
@@ -45,7 +48,7 @@ export default (options) => {
 
 				if (!isHotKey(event)) return
 				event.preventDefault()
-				change.toggleMark('strike')
+				change.call(toggleStrike)
 				return true
 			}
 		}

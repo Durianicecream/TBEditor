@@ -5,12 +5,9 @@ import DropDown from './../../components/Dropdown'
 import 'antd/lib/message/style'
 
 const addEmoji = (value, emoji) => {
-	const change = value.change()
+	const change = value.change().focus()
 	try {
-		change
-			.insertText(emoji)
-			.collapseToStartOfNextText()
-			.focus()
+		change.insertText(emoji).collapseToStartOfNextText()
 	} catch (err) {
 		message.error('插入失败')
 	}
@@ -19,17 +16,16 @@ const addEmoji = (value, emoji) => {
 
 const EMOJIS = [
 	'😃',
-	'😬',
-	'😂',
-	'😅',
 	'😄',
+	'😂',
+	'😬',
+	'😅',
 	'😆',
 	'😍',
 	'😱',
 	'😎',
 	'🙄',
 	'🤣',
-	'😄',
 	'🤣',
 	'😜',
 	'💩'
@@ -58,7 +54,13 @@ class ControlButton extends React.Component {
 		const { onChange, value } = this.props
 		return (
 			<span>
-				<Icon name="smile-o" onClick={this.showDropDown} tip="表情" />
+				<Icon
+					name="smile-o"
+					onClick={
+						this.state.dropdownVisible ? this.hideDropDown : this.showDropDown
+					}
+					tip="表情"
+				/>
 				<DropDown
 					data={EMOJIS.map((item) => (
 						<i
