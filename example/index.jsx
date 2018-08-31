@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import TbEditor from '../src/index'
+import FungoEditor from '../src/index'
 
 class Demo extends React.Component {
 	constructor() {
@@ -34,7 +34,7 @@ class Demo extends React.Component {
 						https://github.com/Durianicecream/tb-editor
 					</a>
 				</h3>
-				<TbEditor
+				<FungoEditor
 					onChange={this.onChange}
 					uploadProps={this.uploadProps}
 					defaultValue={this.state.defaultValue}

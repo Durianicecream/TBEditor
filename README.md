@@ -9,7 +9,7 @@ https://durianicecream.github.io/tb-editor/example/dist/index
 ## 安装
 
 ```
-npm install tb-editor --save
+npm install fungo-editor --save
 
 cd tb-editor
 

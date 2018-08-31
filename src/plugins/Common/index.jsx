@@ -1,6 +1,6 @@
 import React from 'react'
 import { Block } from 'slate'
-import HtmlSerializer from '../../utils/Html'
+import HtmlSerializer from '../../utils/html'
 import { getEventTransfer } from 'slate-react'
 
 export default (options) => {

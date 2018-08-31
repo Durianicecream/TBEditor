@@ -1,6 +1,6 @@
 import React from 'react'
 import Icon from '../../components/Icon'
-import HtmlSerializer from '../../utils/Html'
+import HtmlSerializer from '../../utils/html'
 
 const showPreview = (value) => {
 	const html = HtmlSerializer.serialize(value)

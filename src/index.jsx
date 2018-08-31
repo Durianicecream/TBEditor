@@ -16,9 +16,9 @@ import {
 	History
 } from './plugins'
 import { FullScreen, Preview } from './features'
-import HtmlSerializer from './utils/Html'
+import HtmlSerializer from './utils/html'
 
-export default class TbEditor extends React.Component {
+export default class FungoEditor extends React.Component {
 	static propTypes = {
 		defaultValue: PropTypes.string,
 		uploadProps: PropTypes.shape({
@@ -40,20 +40,20 @@ export default class TbEditor extends React.Component {
 		super(props)
 		this.state = {
 			fullScreen: false,
-			hasReceivedValue: false,
 			value: HtmlSerializer.deserialize('')
 		}
-		this.plugins = [
-			StrikeThrough().plugins,
-			Bold().plugins,
-			Italic().plugins,
-			Quote().plugins,
-			Hr().plugins,
-			Header().plugins,
-			Link().plugins,
-			Image().plugins,
-			Common().plugins
-		]
+		;(this.hasReceivedValue = false),
+			(this.plugins = [
+				StrikeThrough().plugins,
+				Bold().plugins,
+				Italic().plugins,
+				Quote().plugins,
+				Hr().plugins,
+				Header().plugins,
+				Link().plugins,
+				Image().plugins,
+				Common().plugins
+			])
 		this.tools = [
 			Bold,
 			Italic,
@@ -77,7 +77,11 @@ export default class TbEditor extends React.Component {
 		this.setState({ fullScreen: isFull })
 	}
 
-	componentWillReceiveProps(props) {
+	componentWillUpdate(nextProps, nextState) {
+		// debugger
+	}
+
+	componentDidUpdate(preProps) {
 		if (
 			!this.state.hasReceivedValue &&
 			props.defaultValue.replace(/(<p>|<\/p>)/g, '')
@@ -90,6 +94,7 @@ export default class TbEditor extends React.Component {
 	}
 
 	render() {
+		console.log('重绘')
 		const value = this.state.value
 		const { uploadProps } = this.props
 		return (
