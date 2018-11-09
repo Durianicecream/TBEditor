@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Editor } from 'slate-react'
+import classnames from 'classnames'
 import './editor.less'
 import {
 	StrikeThrough,
@@ -20,7 +21,6 @@ import HtmlSerializer from './utils/html'
 
 export default class FungoEditor extends React.Component {
 	static propTypes = {
-		defaultValue: PropTypes.string,
 		uploadProps: PropTypes.shape({
 			name: PropTypes.string,
 			action: PropTypes.string
@@ -29,7 +29,6 @@ export default class FungoEditor extends React.Component {
 	}
 
 	static defaultProps = {
-		defaultValue: '',
 		uploadProps: {
 			name: 'image',
 			action: '/upload'
@@ -42,18 +41,17 @@ export default class FungoEditor extends React.Component {
 			fullScreen: false,
 			value: HtmlSerializer.deserialize('')
 		}
-		;(this.hasReceivedValue = false),
-			(this.plugins = [
-				StrikeThrough().plugins,
-				Bold().plugins,
-				Italic().plugins,
-				Quote().plugins,
-				Hr().plugins,
-				Header().plugins,
-				Link().plugins,
-				Image().plugins,
-				Common().plugins
-			])
+		this.plugins = [
+			StrikeThrough().plugins,
+			Bold().plugins,
+			Italic().plugins,
+			Quote().plugins,
+			Hr().plugins,
+			Header().plugins,
+			Link().plugins,
+			Image().plugins,
+			Common().plugins
+		]
 		this.tools = [
 			Bold,
 			Italic,
@@ -68,6 +66,10 @@ export default class FungoEditor extends React.Component {
 		]
 	}
 
+	reset(html) {
+		this.setState({ value: HtmlSerializer.deserialize(html || '') })
+	}
+
 	onChange = ({ value }) => {
 		this.setState({ value })
 		this.props.onChange(HtmlSerializer.serialize(value))
@@ -77,32 +79,16 @@ export default class FungoEditor extends React.Component {
 		this.setState({ fullScreen: isFull })
 	}
 
-	componentWillUpdate(nextProps, nextState) {
-		// debugger
-	}
-
-	componentDidUpdate(preProps) {
-		if (
-			!this.state.hasReceivedValue &&
-			props.defaultValue.replace(/(<p>|<\/p>)/g, '')
-		) {
-			this.setState({
-				value: HtmlSerializer.deserialize(props.defaultValue),
-				hasReceivedValue: true
-			})
-		}
-	}
-
 	render() {
-		console.log('重绘')
 		const value = this.state.value
 		const { uploadProps } = this.props
 		return (
 			<div
-				className={`tb-editor
-				${this.state.fullScreen ? 'full-screen' : ''}`}
+				className={classnames('fg-editor', this.props.className, {
+					'full-screen': this.state.fullScreen
+				})}
 			>
-				<div className="tb-toolbar">
+				<div className="fg-toolbar">
 					{this.tools.map((item, index) => {
 						const Button = item().components.ControlButton
 						return (
@@ -122,7 +108,7 @@ export default class FungoEditor extends React.Component {
 				</div>
 				<Editor
 					{...this.props}
-					className="tb-contenteditable"
+					className="fg-contenteditable"
 					plugins={this.plugins}
 					value={value}
 					onChange={this.onChange}

@@ -4,14 +4,14 @@
 
 ## 在线演示
 
-https://durianicecream.github.io/tb-editor/example/dist/index
+https://durianicecream.github.io/FungoEditor/example/dist/index
 
 ## 安装
 
 ```
 npm install fungo-editor --save
 
-cd tb-editor
+cd fungo-editor
 
 npm install
 
