@@ -39,13 +39,11 @@ export default (options) => {
 		plugins: {
 			renderMark: (props) => {
 				const { children, mark, attributes } = props
-				if (mark.type === 'strike') {
+				if (mark.type === 'strikethrough') {
 					return <s {...attributes}>{children}</s>
 				}
 			},
 			onKeyDown: (event, change) => {
-				const mark = 'strike'
-
 				if (!isHotKey(event)) return
 				event.preventDefault()
 				change.call(toggleStrike)

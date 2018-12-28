@@ -1,4 +1,4 @@
-# TB Editor
+# FunGo Editor
 
 基于 react 和 slate.js 的所见即所得富文本编辑器, 支持文本、图片、链接、emoji 等元素插入
 
