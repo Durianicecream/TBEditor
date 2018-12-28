@@ -2,7 +2,7 @@ import React from 'react'
 import Icon from './../../components/Icon'
 
 const toggleStrike = (change) => {
-	return change.toggleMark('strike')
+	return change.toggleMark('strikethrough')
 }
 
 const ControlButton = ({ value, onChange }) => (
@@ -22,7 +22,7 @@ const isHotKey = (event) => {
 }
 
 const hasStrike = (value) => {
-	return value.activeMarks.some((mark) => mark.type === 'strike')
+	return value.activeMarks.some((mark) => mark.type === 'strikethrough')
 }
 
 export default (options) => {
@@ -44,6 +44,8 @@ export default (options) => {
 				}
 			},
 			onKeyDown: (event, change) => {
+				const mark = 'strikethrough'
+
 				if (!isHotKey(event)) return
 				event.preventDefault()
 				change.call(toggleStrike)

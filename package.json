@@ -1,25 +1,22 @@
 {
 	"name": "fungo-editor",
-	"version": "2.0.0",
+	"version": "1.0.5",
 	"description": "一个基于slate.js的所见即所得的富文本编辑器",
 	"author": "TB",
 	"license": "MIT",
 	"private": false,
 	"main": "lib/index",
-	"files": [
-		"lib"
-	],
-	"keywords": [
-		"rich-editor",
-		"slate"
-	],
+	"files": ["lib"],
+	"keywords": ["rich-editor", "slate"],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Durianicecream/Fungo-editor"
 	},
 	"scripts": {
-		"start": "webpack-dev-server --mode development --history-api-fallback --hot --inline --progress --colors",
-		"demo": "rm -rf example/dist/ && webpack --mode production --output-path example/dist/ --pregress --colors",
+		"start":
+			"webpack-dev-server --mode development --history-api-fallback --hot --inline --progress --colors",
+		"demo":
+			"rm -rf example/dist/ && webpack --mode production --output-path example/dist/ --pregress --colors",
 		"build": "rm -rf lib && mkdir lib && babel src --out-dir lib --copy-files",
 		"less": "node scripts/less"
 	},

@@ -72,7 +72,7 @@ const RULES = [
 					return <b>{children}</b>
 				case 'italic':
 					return <i>{children}</i>
-				case 'strike':
+				case 'strikethrough':
 					return <s>{children}</s>
 				case 'image':
 					return <img src={obj.data.get('src')} />

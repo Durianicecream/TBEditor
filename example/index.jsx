@@ -6,8 +6,7 @@ class Demo extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			value: '',
-			defaultValue: '随便输入点什么吧...😃'
+			value: ''
 		}
 		this.uploadProps = {
 			name: 'image',
@@ -17,6 +16,10 @@ class Demo extends React.Component {
 
 	onChange = (value) => {
 		this.setState({ value })
+	}
+
+	componentDidMount() {
+		this.editor.reset('随便输入点什么吧...😃')
 	}
 
 	render() {
@@ -37,7 +40,7 @@ class Demo extends React.Component {
 				<FungoEditor
 					onChange={this.onChange}
 					uploadProps={this.uploadProps}
-					defaultValue={this.state.defaultValue}
+					ref={(ele) => (this.editor = ele)}
 				/>
 				<div
 					style={{
