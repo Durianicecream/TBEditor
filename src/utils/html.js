@@ -57,6 +57,9 @@ const RULES = [
 		serialize(obj, children) {
 			switch (obj.type) {
 				case 'paragraph':
+					if (obj.isEmpty) {
+						return <br />
+					}
 					return <p>{children}</p>
 				case 'hr':
 					return <hr />
@@ -87,19 +90,9 @@ const RULES = [
 	}
 ]
 
-const parseHtml = (html) => {
-	// img脱去a标签包裹
-	const regx = /<a\b.*?>([\S\s]*?<img\b.*?>[\S\s]*?)<\/a>/g
-	html = html.replace(regx, '$1')
-	const parsed = new DOMParser().parseFromString(html, 'text/html')
-	const { body } = parsed
-	return body
-}
-
 const serializer = new Html({
 	rules: RULES,
-	defaultBlock: 'paragraph',
-	parseHtml
+	defaultBlock: 'paragraph'
 })
 
 export default serializer
