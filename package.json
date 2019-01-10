@@ -1,6 +1,6 @@
 {
 	"name": "tb-editor",
-	"version": "1.2.0",
+	"version": "1.0.0",
 	"description": "一个基于slate.js的所见即所得的富文本编辑器",
 	"author": "TB",
 	"license": "MIT",
@@ -17,8 +17,7 @@
 			"webpack-dev-server --mode development --history-api-fallback --hot --inline --progress --colors",
 		"demo":
 			"rm -rf example/dist/ && webpack --mode production --output-path example/dist/ --pregress --colors",
-		"build": "rm -rf lib && mkdir lib && babel src --out-dir lib --copy-files",
-		"less": "node scripts/less"
+		"build": "rm -rf lib && mkdir lib && babel src --out-dir lib --copy-files"
 	},
 	"dependencies": {
 		"immutable": "^3.8.2",

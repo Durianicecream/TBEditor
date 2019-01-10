@@ -84,11 +84,11 @@ export default class FungoEditor extends React.Component {
 		const { uploadProps } = this.props
 		return (
 			<div
-				className={classnames('fg-editor', this.props.className, {
+				className={classnames('tb-editor', this.props.className, {
 					'full-screen': this.state.fullScreen
 				})}
 			>
-				<div className="fg-toolbar">
+				<div className="tb-toolbar">
 					{this.tools.map((item, index) => {
 						const Button = item().components.ControlButton
 						return (
@@ -108,7 +108,7 @@ export default class FungoEditor extends React.Component {
 				</div>
 				<Editor
 					{...this.props}
-					className="fg-contenteditable"
+					className="tb-contenteditable"
 					plugins={this.plugins}
 					value={value}
 					onChange={this.onChange}

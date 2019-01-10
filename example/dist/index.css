@@ -1,53 +1,53 @@
-.fg-editor {
+.tb-editor {
   color: #444;
   margin: 0 auto;
   border: solid 1px #ddd;
   border-radius: 4px;
   width: 100%;
 }
-.fg-editor ::-webkit-scrollbar {
+.tb-editor ::-webkit-scrollbar {
   width: 6px;
 }
-.fg-editor ::-webkit-scrollbar-thumb {
+.tb-editor ::-webkit-scrollbar-thumb {
   background-color: #cbcfd6;
 }
-.fg-editor .fg-contenteditable {
+.tb-editor .tb-contenteditable {
   padding: 20px;
   min-height: 300px;
   max-height: 600px;
   overflow-y: auto;
 }
-.fg-editor .fg-contenteditable blockquote {
+.tb-editor .tb-contenteditable blockquote {
   border-left: 2px solid #ddd;
   margin: 2em 0;
   padding-left: 10px;
   color: #aaa;
 }
-.fg-editor .fg-contenteditable .selected.emoji {
+.tb-editor .tb-contenteditable .selected.emoji {
   outline: solid 2px #3d70d4;
 }
-.fg-editor .fg-contenteditable img {
+.tb-editor .tb-contenteditable img {
   max-width: 100%;
   margin: 1em auto;
   display: block;
 }
-.fg-editor .fg-contenteditable img.selected {
+.tb-editor .tb-contenteditable img.selected {
   outline: solid 2px #3d70d4;
 }
-.fg-editor .fg-contenteditable hr {
+.tb-editor .tb-contenteditable hr {
   margin: 2em 0;
   border: none;
   border-top: 1px solid #ddd;
 }
-.fg-editor .fg-contenteditable hr.selected {
+.tb-editor .tb-contenteditable hr.selected {
   outline: solid 2px #3d70d4;
 }
-.fg-editor .fg-toolbar {
+.tb-editor .tb-toolbar {
   padding: 10px;
   color: #999;
   border-bottom: solid 1px #ddd;
 }
-.fg-editor.full-screen {
+.tb-editor.full-screen {
   position: fixed;
   top: 0;
   left: 0;
@@ -59,7 +59,7 @@
   padding: 0;
   width: 100%;
 }
-.fg-editor.full-screen .tb-contenteditable {
+.tb-editor.full-screen .tb-contenteditable {
   height: 100%;
   min-height: none;
   max-height: none;
