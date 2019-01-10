@@ -4,7 +4,7 @@
 
 ## 在线演示
 
-https://durianicecream.github.io/FungoEditor/example/dist/index
+https://durianicecream.github.io/TBeditor/example/dist/index
 
 ## 安装
 
@@ -26,11 +26,14 @@ slate ~0.33
 
 ## 配置项
 
-uploadPorps
+| 配置项      | 类型     | 必填项 | 默认值 | 说明                                              |
+| ----------- | -------- | ------ | ------ | ------------------------------------------------- |
+| onChange    | function | true   | null   | 钩子函数,监听输入并获取实时 html 值 (value) => {} |
+| uploadProps | object   | false  | {}     | 如果不填则无法开启图片上传功能,                   |
 
-| 配置项                                                             | 类型     | 必填项 | 默认值 | 说明                                              |
-| ------------------------------------------------------------------ | -------- | ------ | ------ | ------------------------------------------------- |
-| reset                                                              | function |        |        | 数据重置接口,如果有异步数据可用                   |
-| onChange                                                           | function | true   | null   | 钩子函数,监听输入并获取实时 html 值 (value) => {} |
-| uploadProps                                                        | object   | false  | {}     | 如果不填则无法开启图片上传功能,                   |
+## 组件方法
+
+
+**reset(html:string)=>void**  数据重置接口,如果有异步数据可用
+
 | API 请参考 [Antd.Upload](https://ant.design/components/upload-cn/) |
