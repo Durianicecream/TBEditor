@@ -1,8 +1,10 @@
 import React from 'react'
 import Icon from './../../components/Icon'
 
-const toggleItalic = (change) => {
-	return change.toggleMark('italic')
+const MARK_NAME = 'italic'
+
+const toggleItalic = (editor) => {
+	return editor.toggleMark(MARK_NAME)
 }
 
 const isHotKey = (event) => {
@@ -10,18 +12,18 @@ const isHotKey = (event) => {
 }
 
 const hasItalic = (value) => {
-	return value.activeMarks.some((mark) => mark.type === 'italic')
+	return value.activeMarks.some((mark) => mark.type === MARK_NAME)
 }
 
-const ControlButton = ({ value, onChange }) => (
+const ControlButton = ({ editor, onChange }) => (
 	<Icon
-		className={`${hasItalic(value) ? 'active' : ''}`}
+		className={`${hasItalic(editor.value) ? 'active' : ''}`}
 		name="italic"
 		onMouseDown={(e) => {
 			e.preventDefault()
-			onChange(toggleItalic(value.change()))
+			onChange(editor.command(toggleItalic))
 		}}
-		className={`${hasItalic(value) ? 'active' : ''}`}
+		className={`${hasItalic(editor.value) ? 'active' : ''}`}
 		tip="斜体"
 	/>
 )
@@ -40,12 +42,12 @@ export default (options) => {
 		plugins: {
 			renderMark: (props) => {
 				const { children, mark, attributes } = props
-				if (mark.type === 'italic') {
+				if (mark.type === MARK_NAME) {
 					return <i {...attributes}>{children}</i>
 				}
 			},
 			onKeyDown: (event, change) => {
-				const mark = 'italic'
+				const mark = MARK_NAME
 
 				if (!isHotKey(event)) return
 				event.preventDefault()

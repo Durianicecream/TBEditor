@@ -95,7 +95,7 @@ export default class FungoEditor extends React.Component {
 							<Button
 								key={index}
 								onChange={this.onChange}
-								value={value}
+								editor={this.editor}
 								uploadProps={uploadProps}
 							/>
 						)
@@ -112,6 +112,7 @@ export default class FungoEditor extends React.Component {
 					plugins={this.plugins}
 					value={value}
 					onChange={this.onChange}
+					ref={(editor) => (this.editor = editor)}
 				/>
 			</div>
 		)

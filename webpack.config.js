@@ -84,6 +84,9 @@ module.exports = {
 	entry: {
 		index: './example/index.jsx'
 	},
+	output: {
+		
+	},
 	plugins: [
 		new MiniCssExtractPlugin('editor.css'),
 		new HtmlWebpackPlugin({

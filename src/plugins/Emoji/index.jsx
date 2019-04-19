@@ -4,14 +4,13 @@ import Icon from './../../components/Icon'
 import DropDown from './../../components/Dropdown'
 import 'antd/lib/message/style'
 
-const addEmoji = (value, emoji) => {
-	const change = value.change().focus()
+const addEmoji = (editor, emoji) => {
+	const editor = editor.focus()
 	try {
-		change.insertText(emoji).collapseToStartOfNextText()
+		editor.insertText(emoji).collapseToStartOfNextText()
 	} catch (err) {
 		message.error('插入失败')
 	}
-	return change
 }
 
 const EMOJIS = [
@@ -51,7 +50,7 @@ class ControlButton extends React.Component {
 	}
 
 	render() {
-		const { onChange, value } = this.props
+		const { onChange, editor } = this.props
 		return (
 			<span>
 				<Icon
@@ -65,7 +64,7 @@ class ControlButton extends React.Component {
 					data={EMOJIS.map((item) => (
 						<i
 							onClick={(e) => {
-								onChange(addEmoji(value, item))
+								onChange(editor.command(addEmoji, item))
 							}}
 						>
 							{item}

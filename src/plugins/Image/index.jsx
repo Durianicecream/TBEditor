@@ -7,9 +7,9 @@ import 'antd/lib/modal/style'
 import 'antd/lib/upload/style'
 import 'antd/lib/message/style'
 
-const addImage = (change, src) => {
+const addImage = (editor, src) => {
 	try {
-		change.insertBlock({
+		editor.insertBlock({
 			type: 'image',
 			isVoid: true,
 			data: { src }
@@ -17,10 +17,9 @@ const addImage = (change, src) => {
 	} catch (err) {
 		message.error('插入失败')
 	}
-	return change
 }
 
-const addImages = (change, imageList) => {
+const addImages = (editor, imageList) => {
 	try {
 		imageList.forEach((item) => {
 			change.insertBlock({
@@ -32,7 +31,6 @@ const addImages = (change, imageList) => {
 	} catch (err) {
 		message.error('插入失败')
 	}
-	return change
 }
 
 class ControlButton extends React.Component {
@@ -53,8 +51,8 @@ class ControlButton extends React.Component {
 		this.setState({ modalVisible: true })
 	}
 
-	handleAddImage = (event) => {
-		const { value, onChange } = this.props
+	handleAddImage = (e) => {
+		const { editor, onChange } = this.props
 		const { fileList } = this.state
 		const isUploading = fileList.some((item) => item.status === 'uploading')
 		if (isUploading) {
@@ -62,7 +60,7 @@ class ControlButton extends React.Component {
 			return
 		}
 		const imageList = fileList.filter((item) => item.status === 'done')
-		onChange(addImages(value.change(), imageList))
+		onChange(editor.command(addImages, imageList))
 		this.setState({ modalVisible: false, fileList: [] })
 	}
 

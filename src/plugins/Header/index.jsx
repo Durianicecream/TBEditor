@@ -1,10 +1,9 @@
 import React from 'react'
 import Icon from './../../components/Icon'
 
-const toggleHeader = (value, level) => {
-	const change = value.change()
-	return change
-		.setBlocks(hasHeader(value, level) ? 'paragraph' : `h${level}`)
+const toggleHeader = (editor, level) => {
+	return editor
+		.setBlocks(hasHeader(editor.value, level) ? 'paragraph' : `h${level}`)
 		.setBlocks({ isVoid: false })
 }
 
@@ -12,18 +11,18 @@ const hasHeader = (value, level) => {
 	return value.blocks.some((node) => node.type === `h${level}`)
 }
 
-const ControlButton = ({ value, onChange }) => {
+const ControlButton = ({ editor, onChange }) => {
 	const levelList = [1, 2, 3]
 	return (
 		<span>
 			{levelList.map((level) => (
 				<Icon
 					key={level}
-					className={`${hasHeader(value, level) ? 'active' : ''}`}
+					className={`${hasHeader(editor.value, level) ? 'active' : ''}`}
 					name={`h${level}`}
 					onMouseDown={(e) => {
 						e.preventDefault()
-						onChange(toggleHeader(value, level))
+						onChange(toggleHeader(editor, level))
 					}}
 					tip={`${level}级标题`}
 				/>

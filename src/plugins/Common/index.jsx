@@ -11,11 +11,11 @@ export default (options) => {
 					last: {
 						types: 'paragraph'
 					},
-					normalize: (change, violation, context) => {
-						switch (violation) {
+					normalize: (editor, error) => {
+						switch (error.code) {
 							case 'last_child_type_invalid': {
 								const paragraph = Block.create('paragraph')
-								return change.insertNodeByKey(
+								return editor.insertNodeByKey(
 									context.node.key,
 									context.node.nodes.size,
 									paragraph
@@ -25,15 +25,14 @@ export default (options) => {
 					}
 				}
 			},
-			onPaste: (event, change) => {
+			onPaste: (event, editor, next) => {
 				const transfer = getEventTransfer(event)
-				if (transfer.type !== 'html') return
+				if (transfer.type !== 'html') return next()
 				const { document } = HtmlSerializer.deserialize(transfer.html)
-				change.insertFragment(document)
-				return true
+				editor.insertFragment(document)
 			},
-			onCopy: (event, change) => {
-				const html = HtmlSerializer.serialize(change.value)
+			onCopy: (event, editor) => {
+				const html = HtmlSerializer.serialize(editor.value)
 			},
 			renderNode: (props) => {
 				const { children, node, attributes } = props

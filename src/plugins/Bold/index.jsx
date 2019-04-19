@@ -1,8 +1,10 @@
 import React from 'react'
 import Icon from './../../components/Icon'
 
-const toggleBold = (change) => {
-	return change.toggleMark('bold')
+const MARK_NAME = 'bold'
+
+const toggleBold = (editor) => {
+	return editor.toggleMark(MARK_NAME)
 }
 
 const isHotKey = (event) => {
@@ -10,16 +12,17 @@ const isHotKey = (event) => {
 }
 
 const hasBold = (value) => {
-	return value.activeMarks.some((mark) => mark.type === 'bold')
+	return value.activeMarks.some((mark) => mark.type === MARK_NAME)
 }
 
-const ControlButton = ({ value, onChange }) => (
+const ControlButton = ({ editor, onChange }) => (
 	<Icon
-		className={`${hasBold(value) ? 'active' : ''}`}
+		className={`${hasBold(editor.value) ? 'active' : ''}`}
 		name="bold"
 		onMouseDown={(e) => {
 			e.preventDefault()
-			onChange(toggleBold(value.change()))
+			editor.command(toggleBold)
+			onChange(editor.value)
 		}}
 		tip="加粗"
 	/>
@@ -39,16 +42,15 @@ export default (options) => {
 		plugins: {
 			renderMark: (props) => {
 				const { children, mark, attributes } = props
-				if (mark.type === 'bold') {
+				if (mark.type === MARK_NAME) {
 					return <b {...attributes}>{children}</b>
 				}
 			},
-			onKeyDown: (event, change) => {
-				const mark = 'bold'
+			onKeyDown: (event, editor, next) => {
+				if (!isHotKey(event)) return next()
 
-				if (!isHotKey(event)) return
 				event.preventDefault()
-				change.call(toggleBold)
+				editor.command(toggleBold)
 				return true
 			}
 		}
