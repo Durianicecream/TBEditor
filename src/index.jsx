@@ -19,7 +19,7 @@ import {
 import { FullScreen, Preview } from './features'
 import HtmlSerializer from './utils/html'
 
-export default class FungoEditor extends React.Component {
+export default class TBEditor extends React.Component {
 	static propTypes = {
 		uploadProps: PropTypes.shape({
 			name: PropTypes.string,
@@ -80,6 +80,7 @@ export default class FungoEditor extends React.Component {
 	}
 
 	render() {
+		debugger
 		const value = this.state.value
 		const { uploadProps } = this.props
 		return (

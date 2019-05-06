@@ -5,7 +5,7 @@ import DropDown from './../../components/Dropdown'
 import 'antd/lib/message/style'
 
 const addEmoji = (editor, emoji) => {
-	const editor = editor.focus()
+	editor = editor.focus()
 	try {
 		editor.insertText(emoji).collapseToStartOfNextText()
 	} catch (err) {

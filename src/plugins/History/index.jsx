@@ -11,8 +11,8 @@ const ControlButton = ({ editor, onChange }) => (
 export default (options) => {
 	return {
 		changes: {
-			undo,
-			redo
+			undo: (editor) => editor.undo(),
+			redo: (editor) => editor.redo()
 		},
 		components: {
 			ControlButton
